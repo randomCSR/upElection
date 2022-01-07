@@ -1,38 +1,44 @@
-.App {
-  text-align: center;
+body{
+  background-color:#000000;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.mapdiv{
+  width: 100%;
+  margin-left: 100px;
+  /* height:1700px; */  
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.row2{
+  /* text-align: center; */
+  display:flex;
+  justify-content:space-around;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.stateBtnHeader{
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-top: 100px;
+  /* border: 1px solid #0766fb; */
+  /* display:inline; */
+  display:flex;
 }
 
-.App-link {
-  color: #61dafb;
-}
+.st0:hover{fill:#8bfaac;stroke:#FFFFFF;stroke-width:1}
+.st1:hover{fill:#FF9933;stroke:#FFFFFF;stroke-width:1}
+.st2:hover{fill:#0000FF;stroke:#FFFFFF;stroke-width:1}
+.st3:hover{fill:#0099AA;stroke:#FFFFFF;stroke-width:1} 
+.st4:hover{fill:#A0A0A0;stroke:#FFFFFF;stroke-width:1} 
+.st5:hover{fill:#330066;stroke:#FFFFFF;stroke-width:1}
+.cns-1:hover{fill:#ffffff}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+.st001{fill-rule:evenodd;clip-rule:evenodd;fill:red;stroke:#FFFFFF;stroke-width:0.25;stroke-miterlimit:10;}
+.Shahganj, .Jaunpur, .Badlapur, .Malhani, .Zahoorabad{fill-rule:evenodd;clip-rule:evenodd;fill:yellow;stroke:#FFFFFF;stroke-width:0.25;stroke-miterlimit:10;}
+.st0{fill-rule:evenodd;clip-rule:evenodd;fill:gray;stroke:#FFFFFF;stroke-width:0.25;stroke-miterlimit:10;}
+.st1{fill-rule:evenodd;clip-rule:evenodd;fill:gray;stroke:#FFFFFF;stroke-width:0.25;stroke-miterlimit:10;}
+.st2{fill-rule:evenodd;clip-rule:evenodd;fill:gray;stroke:#FFFFFF;stroke-width:0.25;stroke-miterlimit:10;}
+.st3{fill-rule:evenodd;clip-rule:evenodd;fill:gray;stroke:#FFFFFF;stroke-width:0.25;stroke-miterlimit:10;}
+.st4{fill-rule:evenodd;clip-rule:evenodd;fill:gray;stroke:#FFFFFF;stroke-width:0.25;stroke-miterlimit:10;}
+.st5{fill-rule:evenodd;clip-rule:evenodd;fill:gray;stroke:#FFFFFF;stroke-width:0.25;stroke-miterlimit:10;}
+.st6{display:none;}
+
+
+

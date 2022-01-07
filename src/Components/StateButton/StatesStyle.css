@@ -1,0 +1,26 @@
+button{
+	border: none;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+.btn{
+
+    background-color:black;
+    color:white;
+    padding: 9px;
+    border: 1px solid #0766fb;
+    border-radius: 1px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.btn:hover{
+    background-color:#0766fb;
+}
+   
+
+   
+    
+
+
