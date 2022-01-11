@@ -55,19 +55,10 @@ function ConstituencyList() {
           <p>403/403</p>
       </span>
      
-      <div  className="firstWidget">
+      <div  className="firstWidget" >
       <PieChartCompo />
       </div>
-      {/* <ReactTooltip id = "singleBox" effect="solid" type="light" >
-          <span>
-            
-            <h2 style={{color:"white",backgroundColor:"#3ac9de",padding:"8px"}}>Constituency Name</h2>
-            
-          <p>Candidate Name</p>
-          <p>Candidate party</p>
-          <p>Party Logo</p>          
-          </span>
-      </ReactTooltip> */}
+     
       
       
 <div className="tableWrapper box1" title = "Mohammadabad  Harendra  Candidate   Party   PARTY LOGO">

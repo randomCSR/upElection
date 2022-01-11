@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from 'react-router-dom';
-//  import ReactTooltip from 'react-tooltip';
+ import ReactTooltip from 'react-tooltip';
 //  import Tippy from '@tippyjs/react';
 // import 'tippy.js/dist/tippy.css';
 
@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom';
       <Link to = {url}>
         {props.points}==undefined?
         {/* <Tippy content="Hello"> */}
-       
+        <g data-tip data-for="singleBox">
             <path 
               // data-id = {props.dataId} 
               // data-name = {props.name}
@@ -24,12 +24,12 @@ import { Link } from 'react-router-dom';
             //   fill= {fillConsti}
               d={props.dd} 
             />  
-           
+           </g> 
              
                
                 :
                 
-              {/* <g data-tip data-for="singleBox">  */}
+              <g data-tip data-for="singleBox"> 
             <polygon 
               // data-name = {props.name} 
               // data-id = {props.dataId} 
@@ -39,7 +39,7 @@ import { Link } from 'react-router-dom';
               
             />
             
-            {/* </g>  */}
+            </g> 
             {/* <ReactTooltip id = "singleBox" effect="solid" type="light" >
             <span>
             
