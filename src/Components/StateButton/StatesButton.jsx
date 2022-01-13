@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./StatesStyle.css"
 
 
-export default function StatesButton(props) {
-    
+ function StatesButton(props) {
+    const [color, changeColor] = useState(props.name);
+    const handleClick = (event) => {
+      event.target.style.backgroundColor ="#0766fb";
+        {props.addTrip()}
+            
+
+     }
     return (
         <section className="selectState">
             <div>
-                <button className="btn" onClick = {props.addTrip}>{props.name}</button>
+                <button id={props.name} className="btn"   onClick={handleClick} >{props.name}</button>
             </div>
         </section>
-    )
+    )   
 }
+
+export default StatesButton

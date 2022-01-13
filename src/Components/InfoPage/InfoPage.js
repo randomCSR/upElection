@@ -1,29 +1,69 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import './InfoStyle.css'
 import map from './map.png'
 import photo from './photo.jpg'
 import graph from './graph.png'
 
-
-
 const customStyle = {
   color: "#73e7fc"
 }
-const InfoPage = () => {
+ 
+function InfoPage(props){
 
-    const {id}  = useParams();
-
-   
+  // const [constituency,setConstituency]=useState([])
+  const {id}  = useParams();
+  // useEffect(()=>{
+  //   const requestOptions = {
+  //     method: 'POST',
+  //     body: JSON.stringify()  
+  // };
+  //   const url = "https://stage-api.editorji.com/elections/constituency-details/"  
+  //   fetch(url,requestOptions).then(resp=>resp.json())
+  //   .then(resp=>console.log(resp))
+  // }, [])
+  const getConstituencyDetails = async (lan = "en") => {
+    const lang = lan === "bn" ? "ta" : lan;
+    const body = new URLSearchParams();
+    body.append("id", 1);
+    body.append("lang", lang);
+    const headers = {
+      "Content-Type": "application/x-www-form-urlencoded",
+      Accept: "application/json",
+    };
+  
+    try {
+      const res = await fetch(
+        `https://stage-api.editorji.com/elections/constituency-details`,
+        {
+          method: "POST",
+          body,
+          headers,
+        }
+      );
+      const { response } = await res.json();
+      // const { response } = data.data;
+      return {
+       
+      };
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  };
+    
+ 
         return (<div>
             <Link to="/">
               <h5 className="backToMap"> &lt; back to map </h5>
               </Link>
+             
        
             <div className="infoContainer" >
-              
+            { 
+            // constituency.map(response =><div><p>{`${response.id}`}</p> </div>)
+            }
                  <div className="grid-container">
-        <div className="grid_item item1"  ><h1 style={{color: "#73e7fc"}}>{ id }</h1></div>
+        <div className="grid_item item1"  ><h1 style={customStyle}>{id}</h1></div>
         <div className="grid_item item2" ><p>Population<h1>447,330</h1></p></div>
         <div className="grid_item item3" ><p>Sex Ratio</p><h1>1,000</h1></div>  
         <div className="grid_item item4" ><p>Literacy Rate</p><h1>72.16%</h1></div>

@@ -4,9 +4,13 @@ button{
 	cursor: pointer;
 	outline: inherit;
 }
+button:checked{
+    background-color:#0766fb;
+}
+
 .btn{
 
-    background-color:black;
+    background-color:000000;
     color:white;
     padding: 9px;
     border: 1px solid #0766fb;
@@ -17,6 +21,7 @@ button{
 
 .btn:hover{
     background-color:#0766fb;
+    color:white;
 }
    
 

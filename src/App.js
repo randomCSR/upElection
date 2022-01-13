@@ -9,7 +9,8 @@ import {ArrMap, GoaArrMap, UpArrMap, ManipurArrMap, UttrakhandArrMap} from "./Ma
 import StatesButton from "./Components/StateButton/StatesButton";
 import InfoPage from "./Components/InfoPage/InfoPage";
 import ReactTooltip from 'react-tooltip';
-// import Pic from "./Components/InfoPage/photo.jpg";
+
+
 
 
 function createMap(cnsTerms) {
@@ -42,7 +43,7 @@ function createMap(cnsTerms) {
       <h6>Candidate Name</h6>
       <h6>Candidate party</h6>
       <img src="https://th.bing.com/th/id/R.059b8c7e09cc0e508baad5196981ff0e?rik=TSCMyXqnX5P3Ww&riu=http%3a%2f%2f1.bp.blogspot.com%2f-ZAtg1X0c8Ko%2fTjKObOR0Y_I%2fAAAAAAAAAKU%2f0K2HFSkxSec%2fs1600%2fBJP_emblom.jpg&ehk=7lF17OuSzujyoWaciTf47QEkgJU7n5Hrw0qQAWSgkCs%3d&risl=&pid=ImgRaw&r=0" alt="candidate" height="30px"></img>
-      {/* <h6>Party Logo</h6>           */}
+     
       </span>
     </ReactTooltip>
   
@@ -52,6 +53,7 @@ function createMap(cnsTerms) {
   }
 
    function upMap(){
+     
     return(<>
       <div className = "mapdiv"  >
         <svg version="1.1"  viewBox="80 140 950 950" height="1000px"  >
@@ -71,6 +73,7 @@ function createMap(cnsTerms) {
   }
 
   function ukMap(){
+    
     return(<>
       <div className = "mapdiv" >
         <svg version="1.1"  viewBox="100 150 900 900" height="1000px" >
@@ -90,6 +93,7 @@ function createMap(cnsTerms) {
   }
 
   function goaMap(){
+    
     return(<>
       <div className = "mapdiv"  >
         <svg version="1.1"  viewBox="50 60 650 650" height="1000px" >
@@ -109,6 +113,7 @@ function createMap(cnsTerms) {
   }
 
   function maniMap(){
+    
     return( <>
       <div className = "mapdiv">
         <svg version="1.1"  viewBox="100 140 800 800" height="1000px" >
@@ -128,21 +133,21 @@ function createMap(cnsTerms) {
   }
 
 function App() {
-  const [state,setState] =useState("up-state");
-
+  const [state,setState] = useState("up-state");
+ 
   return (
     <BrowserRouter>
      <Routes>
-      <Route path="/infopage/:id" element={<InfoPage />}  />
+      <Route path="/infopage/:id" element={<InfoPage  />}  />
       <Route path="/" element={
         <div className="App">
    
         <span className="stateBtnHeader"> 
-         <StatesButton addTrip={() => setState("up-state")} name="UTTAR PRADESH"  />
+         <StatesButton addTrip={() => setState("up-state")}  name="UTTAR PRADESH"  />
          <StatesButton addTrip={() => setState("punjab-state")} name="PUNJAB" />
-         <StatesButton addTrip={() => setState("uk-state")} name="UTTRAKHAND" />
-         <StatesButton addTrip={() => setState("goa-state")} name="GOA" />
-         <StatesButton addTrip={() => setState("manipur-state")} name="MANIPUR" />
+         <StatesButton addTrip={() => setState("uk-state")} name="UTTRAKHAND"  />
+         <StatesButton addTrip={() => setState("goa-state")} name="GOA"  />
+         <StatesButton addTrip={() => setState("manipur-state")} name="MANIPUR"  />
         </span>
         
    
