@@ -1,7 +1,7 @@
 
 .dropDown{
     margin-top: 100px;
-    /* margin-right:100px; */
+    
      }
   
   #constituency{
@@ -9,65 +9,15 @@
     font-size:18px;
     color: rgb(233, 232, 232);
     width: 400px;
-    /* padding: 20px;
-    padding-top:20px; */
     border-radius: 4px;
     background-color:#292828;
   } 
   
   
-  /* 
-  .box1 {
-    display: flex;
-    position:inherit;
-    cursor:pointer;
-    display: inline block;
-  }
-  
-  .box1::after {
-    position:absolute;
-    width:160px;
-    height: 100px;
-    left:calc(50%-70px);
-    
-    bottom:125%;
-     text-align:center;
-    box-sizing: border-box;
-    content: attr(title);
-    color:#000000;
-    background-color:#ffffff;
-    padding:8px;
-    border-radius: 8px;
-    font-size: 1em;
-    font-weight:bold;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-   
-    visibility: hidden;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.4s, transform 0.2s;
-  }
-  .box1:hover::after{
-    opacity: 1;
-    visibility:visible;
-    transform: translateY(0); 
-   } 
-    */
-  
   .firstWidget{
     height: 240px; 
     
   }
-  /* 
-  .compo{
-    display: flex;
-  } */
-  
-  /* .MapBox{
-    height: 800px;
-    width: 800px;
-  } */
-  
   
   .radioBtns{
     color: white;
@@ -86,11 +36,7 @@
   
   
   .ratio{
-    /* height: 100px;
-    width: 100px; */
     justify-content: center;
-    /* align-items: center; */
-    /* padding: 5px;  */
     background-color:#353330;
     color: white;
   
@@ -99,8 +45,6 @@
 
   
 .tableWrapper {
-    /* background: linear-gradient(to right, #FF9933, #42eed0); */
-    /* border-radius: 0.5rem; */
     padding: 0px;
     overflow: hidden;
     width: 405px;
@@ -108,12 +52,9 @@
   }
   
    .table {
-    /* border-radius: 0 0 0.5rem 0.5rem; */
     width: 100%;
+   }
     
-    /* background: var(--ej-neutral-100); */
-    /* border-collapse: collapse; */
-  }
   .tHeading{
     /* width: 100%; */
     text-align: center;

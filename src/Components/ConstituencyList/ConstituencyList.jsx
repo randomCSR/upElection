@@ -75,7 +75,7 @@ function ConstituencyList() {
   <tbody className="tBody">
       <tr >
         <td>BJP</td>
-        <td>Won</td>
+        <td>221</td>
         <td>2012</td>
       </tr>
   </tbody>

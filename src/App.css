@@ -1,15 +1,43 @@
 body{
   background-color:#000000;
 }
+button{
+	border: none;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+button:checked{
+    background-color:#0766fb;
+}
 
+.btn{
+
+    background-color:000000;
+    color:white;
+    padding: 9px;
+    border: 1px solid #0766fb;
+    border-radius: 1px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.btn:hover{
+    background-color:#0766fb;
+    color:white;
+}
+
+.toolTipHeading{
+  color:"white";
+  background-color:#3ac9de;
+  padding: "20px";
+}
 .mapdiv{
   width: 100%;
-  margin-left: 100px;
-  /* height:1700px; */  
+  margin-left: 100px; 
 }
 
 .row2{
-  /* text-align: center; */
   display:flex;
   justify-content:space-around;
 }
@@ -17,27 +45,25 @@ body{
 .stateBtnHeader{
   justify-content: center;
   margin-top: 100px;
-  /* border: 1px solid #0766fb; */
-  /* display:inline; */
   display:flex;
 }
 
-.st0:hover{fill:#8bfaac;stroke:#FFFFFF;stroke-width:1}
+/* .st0:hover{fill:#8bfaac;stroke:#FFFFFF;stroke-width:1}
 .st1:hover{fill:#FF9933;stroke:#FFFFFF;stroke-width:1}
 .st2:hover{fill:#0000FF;stroke:#FFFFFF;stroke-width:1}
 .st3:hover{fill:#0099AA;stroke:#FFFFFF;stroke-width:1} 
 .st4:hover{fill:#A0A0A0;stroke:#FFFFFF;stroke-width:1} 
 .st5:hover{fill:#330066;stroke:#FFFFFF;stroke-width:1}
-.cns-1:hover{fill:#ffffff}
+.cns-1:hover{fill:#ffffff} */
 
-.st001{fill-rule:evenodd;clip-rule:evenodd;fill:red;stroke:#FFFFFF;stroke-width:0.25;stroke-miterlimit:10;}
-.Shahganj, .Jaunpur, .Badlapur, .Malhani, .Zahoorabad{fill-rule:evenodd;clip-rule:evenodd;fill:yellow;stroke:#FFFFFF;stroke-width:0.25;stroke-miterlimit:10;}
-.st0{fill-rule:evenodd;clip-rule:evenodd;fill:gray;stroke:#FFFFFF;stroke-width:0.25;stroke-miterlimit:10;}
-.st1{fill-rule:evenodd;clip-rule:evenodd;fill:gray;stroke:#FFFFFF;stroke-width:0.25;stroke-miterlimit:10;}
-.st2{fill-rule:evenodd;clip-rule:evenodd;fill:gray;stroke:#FFFFFF;stroke-width:0.25;stroke-miterlimit:10;}
-.st3{fill-rule:evenodd;clip-rule:evenodd;fill:gray;stroke:#FFFFFF;stroke-width:0.25;stroke-miterlimit:10;}
-.st4{fill-rule:evenodd;clip-rule:evenodd;fill:gray;stroke:#FFFFFF;stroke-width:0.25;stroke-miterlimit:10;}
-.st5{fill-rule:evenodd;clip-rule:evenodd;fill:gray;stroke:#FFFFFF;stroke-width:0.25;stroke-miterlimit:10;}
+/* .st001{fill-rule:evenodd;clip-rule:evenodd;fill:red;stroke:#FFFFFF;stroke-width:0.25;stroke-miterlimit:10;}
+.Shahganj, .Jaunpur, .Badlapur, .Malhani, .Zahoorabad{fill-rule:evenodd;clip-rule:evenodd;fill:yellow;stroke:#FFFFFF;stroke-width:0.25;stroke-miterlimit:10;} */
+.st0{fill-rule:evenodd;clip-rule:evenodd;stroke:#ffffff;stroke-width:0.50;stroke-miterlimit:10;}
+.st1{fill-rule:evenodd;clip-rule:evenodd;stroke:#ffffff;stroke-width:0.50;stroke-miterlimit:10;}
+.st2{fill-rule:evenodd;clip-rule:evenodd;stroke:#ffffff;stroke-width:0.50;stroke-miterlimit:10;}
+.st3{fill-rule:evenodd;clip-rule:evenodd;stroke:#ffffff;stroke-width:0.50;stroke-miterlimit:10;}
+.st4{fill-rule:evenodd;clip-rule:evenodd;stroke:#ffffff;stroke-width:0.50;stroke-miterlimit:10;}
+.st5{fill-rule:evenodd;clip-rule:evenodd;stroke:#ffffff;stroke-width:0.50;stroke-miterlimit:10;}
 .st6{display:none;}
 
 
