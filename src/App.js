@@ -67,7 +67,7 @@ function App() {
               <path 
                 onMouseOver={getId}
                 id = {id} 
-                fill={data.color}
+                fill={inMapData.color}
                 dataName = {name}
                 className = {classname}
                 d={dd} 
@@ -79,7 +79,7 @@ function App() {
                onMouseOver={getId}
                 dataName = {name} 
                 id = {id} 
-                fill={data.color}
+                fill={inMapData.color}
                 className = {classname}
                 points = {points}
               />
