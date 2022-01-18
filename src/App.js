@@ -40,24 +40,27 @@ function App() {
           }
         );
         const { response } = await res.json();
-        console.log(response);
+        // const { piechart } = await res.json();
+        // console.log(piechart);
+        console.log(response.name);
         setData(response);
         return {};
       } catch (error) {
         return Promise.reject(error);
       }
     };
+  //  console.log(UpArrMap)
   
   const [inMapData,setInMapData] = useState([]);  
    function Map(id, name, classname, points, dd){
     function getId(e) {
-       console.log(e.target.id)
-       console.log(data);
+      //  console.log(e.target.id)
+      //  console.log(data);
        const filteredData =  (data).filter((v) => v.id.toString() === id.toString());
-       console.log(filteredData[0]);
+      //  console.log(filteredData[0]);
        setInMapData(filteredData[0]);
-       
       }
+
        const url = "/infopage/"+id;
        return (<> 
         <Link to = {url}> 
@@ -202,32 +205,30 @@ function App() {
     );
   }
 
-
+  const blueColor = "#0766fb"
+  // const blackColor = "#000000"
   const [state,setState] = useState("up-state");
-  const [color,setColor] = useState("bColor")
+  const [color,setColor] = useState(false)
 
+  
   const handleUpClick = (event) => {
-      event.target.style.backgroundColor =color;
-      setColor("#0766fb")
-      setState("up-state")
+    // setColor(!true?blueColor:blackColor)
+    event.target.style.backgroundColor =color;
+    setState("up-state")
    }
    const handlePunClick = (event) => {
-      setColor("#0766fb")
       event.target.style.backgroundColor =color;
       setState("punjab-state")
    }
    const handleUkClick = (event) => {
-      setColor("#0766fb")
       event.target.style.backgroundColor =color;
       setState("uk-state")
    }
    const handleGoaClick = (event) => {
-      setColor("#0766fb")
       event.target.style.backgroundColor =color;
       setState("goa-state")
    }
    const handleManipurClick = (event) => {
-      setColor("#0766fb")
       event.target.style.backgroundColor =color;
       setState("manipur-state")
    }
@@ -254,7 +255,7 @@ function App() {
         {state === "uk-state" && ukMap() }
         {state === "goa-state" && goaMap() }
         {state === "manipur-state" && maniMap() }
-        <ConstituencyList />
+        <ConstituencyList dropDownList={data} />
         </div>
        </div>
       }  />

@@ -4,11 +4,11 @@ import PieChartCompo from '../PieChart/PieChartCompo'
 // import ReactTooltip from 'react-tooltip';
 
 
-function ConstituencyList() {
+function ConstituencyList(props) {
     
     const [items,setItems] = React.useState("starting");
   
-
+  console.log(props.data)
    
     return (
     <div className="dropDown">

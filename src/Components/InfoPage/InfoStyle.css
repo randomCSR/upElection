@@ -1,31 +1,26 @@
 body{
     background-color:#000000;
-    margin:0;
-    padding:0;
+    margin:0px;
+    padding:0px;
 }
 .backToMap{
-  text-decoration: none !;
   color:#ffff;
-  margin:50px 100px;
+  margin:50px 150px;
   width:150px;
   font-size: 22px;
+  text-decoration: none;
 }
-.infoContainer{
-  /* align-items: center; */
-  /* justify-content: center; */
+/* .infoContainer{
+ 
   margin: 50px;
   
 }
 .grid-container {
     grid-column-gap: 40px;
     grid-row-gap: 40px;
-    
-    /* margin-top: 100px; */
-    /* margin-right: 100px; */
     display: grid;
     grid-template-columns: 300px 400px 400px 400px;
     grid-template-rows: 150px 350px 250px;
-    /* grid-gap: 10px; */
     background-color:#000000;
     padding: 20px;
   }
@@ -37,7 +32,6 @@ body{
     font-size: 20px;
     font-style: inherit;
     font-weight: bold;
-    /* padding: 50px; */
   }
 
   .inc{
@@ -46,18 +40,13 @@ body{
     margin-top: 20px;
    
   }
-
+  
   .photo{
     float:left;
-  }
+  } */
 
-  .detail{
-    float:left;
-    margin-left: 30px;
-    text-align: left;
-  }
-
-
+  
+  /*
   .item6 {
     grid-area: 2/2/3/4
   }
@@ -76,8 +65,168 @@ body{
 
   .item7, .item9, .item10 {
     border: 2px solid rgb(111, 111, 252);; 
-  }
+  }  */
 
   /* .item5, .item6, .item7, .item8, .item9, .item10{
         padding: 20px;
-   } */
+   }
+
+
+
+
+
+
+
+   .gridContainer{
+  display: grid;
+  padding: 200px;
+  grid-column-gap: 20px;
+    grid-row-gap: 20px;
+
+}
+.gridContainer > div {
+  background-color:#000000;
+  color:rgb(111, 111, 252);
+  text-align: center;
+  font-size: 20px;
+  font-style: inherit;
+  font-weight: bold;
+  /* padding: 50px; */
+
+
+
+  .gridContainer{
+    display: grid;
+    /* padding: 1px 100px; */
+    margin-left:100px;
+    margin-right:250px;
+    grid-column-gap: 30px;
+      grid-row-gap: 30px;
+  
+  }
+  .gridContainer > div {
+    background-color:#000000;
+    /* color:rgb(111, 111, 252); */
+    
+    font-size: 40px;
+    font-style: inherit;
+    font-weight: 900;
+    /* padding: 50px; */
+  }
+
+
+.item1{
+  grid-area:1/1/10/2;
+  text-align: center;
+  /* border : 2px solid red; */
+  
+}
+.item2{
+  color:white;    
+  grid-area:1/2/2/6;
+  text-align: center;
+}
+.constName{
+  font-size:50px;
+  font-weight: bold;
+}
+.item3{
+  grid-area:2/2/11/3;
+  border : 2px solid black;
+  color:rgb(111, 111, 252);
+  text-align: center;
+  padding: 80px 30px;
+  
+}
+.item4{
+  grid-area:2/3/11/6;
+  border : 2px solid black;
+  color:rgb(111, 111, 252);
+  padding:30px;
+  position: relative;
+}
+.putInLeft{
+  float: left;
+}
+.gridItem .largeText{
+  font-size:30px;
+  font-weight: 800;
+}
+#inBottom{
+  display:flex;
+  justify-content:space-around;
+  position: absolute; 
+  bottom: 0; 
+  
+  
+}
+.men .women{
+  margin-left:50px
+}
+
+
+.item5{
+  grid-area:10/1/20/2;
+  font-size:  10px;
+  /* border : 2px solid red; */
+}
+.graph{
+  font-size: 15px;
+}
+.item6{
+  grid-area:11/2/18/4;
+  border : 2px solid black;
+}
+.winnerPic{
+  display:flex;
+  border-radius:100px;
+  float:left;
+}
+.winnerImg{
+  float:left;
+  height:180px;
+  width:180px;
+  border-radius: 100px;
+  padding:15px;
+}
+.detail{
+  color:white;
+  
+  margin-top: 30px;
+  float:left;
+  margin-left: 10px;
+  text-align: left;
+  
+}
+.won{
+  /* border: 1px solid greenyellow; */
+  border-radius: 12px;
+  align-items: center;
+  display:inline-block;
+  padding:2px 6px;
+  color:white;
+  background-color:rgb(32, 228, 32);
+}
+
+.winnerBottomRight{
+  float:right;
+  margin-top:28px;
+}
+
+.item7{
+  grid-area:11/4/18/6;
+  border : 2px solid black;
+}
+.lost{
+  /* border: 1px solid greenyellow; */
+  border-radius: 12px;
+  align-items: center;
+  display:inline-block;
+  padding:2px 6px;
+  color:white;
+  background-color:red;
+}
+
+.item3, .item4, .item6, .item7{
+  border: 2px solid rgb(111, 111, 252);
+}
