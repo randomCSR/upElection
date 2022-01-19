@@ -1,0 +1,35 @@
+.ratio{
+    background-color:#353330;
+    color: white;
+  }
+
+  .tableWrapper {
+    padding: 0px;
+    overflow: hidden;
+    width: 405px;
+  }
+   .table {
+    width: 100%;
+   }
+    
+  .tHeading{
+    /* width: 100%; */
+    text-align: center;
+    font-size: 20px;
+    background-color:rgb(49, 48, 48);
+    color:white;
+    
+  }
+  .table th{
+    padding:8px;
+  }
+  .tBody{
+    font-size: 18px;
+    background-color:rgb(243, 165, 119);
+    color:#000000;
+    font-weight: bold;
+  }
+  .tBody td{
+    padding:6px;
+    text-align:center;
+  }

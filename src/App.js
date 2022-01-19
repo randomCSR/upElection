@@ -13,17 +13,22 @@ import {
 import InfoPage from "./Components/InfoPage/InfoPage";
 import Map from "./Components/MapCompo/Map";
 import PopUp from "./Components/popUpBox/popUp";
+import PieChartCompo from "./Components/PieChart/PieChartCompo"
 
 function App() {
+  const [state, setState] = useState("30");
   const [data, setData] = useState([]);
   const [popUpData, setPopUpData] = useState();
+  const [pieData, setPieData] = useState();
+  const [selectedYear, setSelectedYear] = useState("2017")
   useEffect(() => {
     getConstituencyData("en");
   }, []);
-
+ 
   const getConstituencyData = async (lang = "en") => {
     const body = new URLSearchParams();
-    body.append("constituency_no", []);
+    body.append("state_id", state);
+    body.append("year", selectedYear);
     body.append("lang", lang);
     const headers = {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -39,17 +44,18 @@ function App() {
           headers,
         }
       );
-      const { response } = await res.json();
+      const { response, piechart } = await res.json();
       setData(response);
+      setPieData(piechart);
       return {};
     } catch (error) {
       return Promise.reject(error);
     }
   };
-
+ 
   const onHoverCalled = (data) => {
     setPopUpData(data);
-    console.log("Data", data);
+    // console.log("Data", data);
   };
   function createMap(cnsTerms) {
     return (
@@ -134,29 +140,31 @@ function App() {
       </>
     );
   }
-
-  const [state, setState] = useState("up-state");
+  const onYearChange = (data) => {
+    setSelectedYear(data);
+    console.log("Data", data);
+  };
 
   const handleUpClick = (event) => {
-    setState("up-state");
+    setState("30");
   };
   const handlePunClick = (event) => {
-    setState("punjab-state");
+    setState("24");
   };
   const handleUkClick = (event) => {
-    setState("uk-state");
+    setState("31");
   };
   const handleGoaClick = (event) => {
-    setState("goa-state");
+    setState("1");
   };
   const handleManipurClick = (event) => {
-    setState("manipur-state");
+    setState("2");
   };
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/infopage/:id" element={<InfoPage />} />
+        <Route path="/infopage/:id" element={<InfoPage state = {state} selectedYear = {selectedYear} />} />
         <Route
           path="/"
           element={
@@ -165,7 +173,7 @@ function App() {
                 <button
                   key="UTTAR PARDESH"
                   id="UTTAR PARDESH"
-                  className={`btn ${state === "up-state" ? "active" : ""}`}
+                  className={`btn ${state === "30" ? "active" : ""}`}
                   onClick={handleUpClick}
                 >
                   UTTAR PARDESH
@@ -173,7 +181,7 @@ function App() {
                 <button
                   key="PUNJAB"
                   id="PUNJAB"
-                  className={`btn ${state === "punjab-state" ? "active" : ""}`}
+                  className={`btn ${state === "24" ? "active" : ""}`}
                   onClick={handlePunClick}
                 >
                   PUNJAB
@@ -181,7 +189,7 @@ function App() {
                 <button
                   id="UTTRAKHAND"
                   key="UTTRAKHAND"
-                  className={`btn ${state === "uk-state" ? "active" : ""}`}
+                  className={`btn ${state === "31" ? "active" : ""}`}
                   onClick={handleUkClick}
                 >
                   UTTRAKHAND
@@ -189,7 +197,7 @@ function App() {
                 <button
                   id="GOA"
                   key="GOA"
-                  className={`btn ${state === "goa-state" ? "active" : ""}`}
+                  className={`btn ${state === "1" ? "active" : ""}`}
                   onClick={handleGoaClick}
                 >
                   GOA
@@ -197,7 +205,7 @@ function App() {
                 <button
                   id="MANIPUR"
                   key="MANIPUR"
-                  className={`btn ${state === "manipur-state" ? "active" : ""}`}
+                  className={`btn ${state === "2" ? "active" : ""}`}
                   onClick={handleManipurClick}
                 >
                   MANIPUR
@@ -205,12 +213,17 @@ function App() {
               </span>
 
               <div className="row2">
-                {state === "punjab-state" && punMap()}
-                {state === "up-state" && upMap()}
-                {state === "uk-state" && ukMap()}
-                {state === "goa-state" && goaMap()}
-                {state === "manipur-state" && maniMap()}
-                <ConstituencyList dropDownList={data} />
+                {state === "24" && punMap()}
+                {state === "30" && upMap()}
+                {state === "31" && ukMap()}
+                {state === "1" && goaMap()}
+                {state === "2" && maniMap()}
+                <div className="firstWidget">
+                  <ConstituencyList dropDownList={data}  onYearChange = {onYearChange} />
+                  <div className="secondWidget">
+                    <PieChartCompo pieChartData={pieData} />
+                  </div>
+                </div>
               </div>
             </div>
           }

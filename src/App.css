@@ -26,11 +26,11 @@ button {
   background-color: #0766fb;
   color: white;
 }
-.toolTipHeading {
+/* .toolTipHeading {
   color: "white";
   background-color: #3ac9de;
   padding: "20px";
-}
+} */
 .mapdiv {
   width: 100%;
   margin-left: 100px;
@@ -39,6 +39,7 @@ button {
 .row2 {
   display: flex;
   justify-content: space-around;
+  justify-content:space-between;
 }
 
 .stateBtnHeader {
@@ -46,24 +47,34 @@ button {
   margin-top: 100px;
   display: flex;
 }
+.firstWidget{
+  height: 200px; 
+  
+}
+.secondWidget{
+  margin: 100px 0px;
+}
+
+
+
 
 .st0:hover {
-  fill: #8bfaac;
+  fill: #a0a0a0;
   stroke: #ffffff;
   stroke-width: 1;
 }
 .st1:hover {
-  fill: #ff9933;
+  fill: #a0a0a0;
   stroke: #ffffff;
   stroke-width: 1;
 }
 .st2:hover {
-  fill: #0000ff;
+  fill: #a0a0a0;
   stroke: #ffffff;
   stroke-width: 1;
 }
 .st3:hover {
-  fill: #0099aa;
+  fill: #a0a0a0;
   stroke: #ffffff;
   stroke-width: 1;
 }
@@ -73,7 +84,7 @@ button {
   stroke-width: 1;
 }
 .st5:hover {
-  fill: #330066;
+  fill: #a0a0a0;
   stroke: #ffffff;
   stroke-width: 1;
 }
