@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ConstituencyList from "./Components/ConstituencyList/ConstituencyList";
 import "./App.css";
@@ -11,19 +11,17 @@ import {
   UttrakhandArrMap,
 } from "./MapJsonData/ArrMap.json";
 import InfoPage from "./Components/InfoPage/InfoPage";
-import ReactTooltip from "react-tooltip";
-import Map from "./Components/MapCompo/Map"
-import PopUp from "./Components/PopUpBox/PopUp"
+import Map from "./Components/MapCompo/Map";
+import PopUp from "./Components/popUpBox/popUp";
 
 function App() {
-
   const [data, setData] = useState([]);
+  const [popUpData, setPopUpData] = useState();
   useEffect(() => {
     getConstituencyData("en");
   }, []);
 
   const getConstituencyData = async (lang = "en") => {
-    console.log("Hi");
     const body = new URLSearchParams();
     body.append("constituency_no", []);
     body.append("lang", lang);
@@ -48,20 +46,27 @@ function App() {
       return Promise.reject(error);
     }
   };
-  
+
+  const onHoverCalled = (data) => {
+    setPopUpData(data);
+    console.log("Data", data);
+  };
   function createMap(cnsTerms) {
     return (
       <>
-      <Map
-          apiData = {data}
-          key = {cnsTerms.dataId}
-          id = {cnsTerms.dataId}
-          cnsName = {cnsTerms.dataName}
-          class = {cnsTerms.className}
-          points = {cnsTerms.points}
-          dd = {cnsTerms.d}
-     />
-     </>
+        <Map
+          apiData={data.filter(
+            (v) => v.id.toString() === cnsTerms.dataId.toString()
+          )}
+          onHoverCalled={onHoverCalled}
+          key={cnsTerms.dataId}
+          id={cnsTerms.dataId}
+          cnsName={cnsTerms.dataName}
+          class={cnsTerms.className}
+          points={cnsTerms.points}
+          dd={cnsTerms.d}
+        />
+      </>
     );
   }
 
@@ -73,7 +78,7 @@ function App() {
             {ArrMap.map(createMap)}
           </svg>
         </div>
-        <PopUp />
+        <PopUp data={popUpData} />
       </>
     );
   }
@@ -86,7 +91,7 @@ function App() {
             {UpArrMap.map(createMap)}
           </svg>
         </div>
-        <PopUp />
+        <PopUp data={popUpData} />
       </>
     );
   }
@@ -99,7 +104,7 @@ function App() {
             {UttrakhandArrMap.map(createMap)}
           </svg>
         </div>
-        <PopUp />
+        <PopUp data={popUpData} />
       </>
     );
   }
@@ -112,7 +117,7 @@ function App() {
             {GoaArrMap.map(createMap)}
           </svg>
         </div>
-        <PopUp />
+        <PopUp data={popUpData} />
       </>
     );
   }
@@ -125,16 +130,13 @@ function App() {
             {ManipurArrMap.map(createMap)}
           </svg>
         </div>
-        <PopUp />
+        <PopUp data={popUpData} />
       </>
     );
   }
 
- 
-
-
   const [state, setState] = useState("up-state");
-  
+
   const handleUpClick = (event) => {
     setState("up-state");
   };
@@ -161,6 +163,7 @@ function App() {
             <div className="App">
               <span className="stateBtnHeader">
                 <button
+                  key="UTTAR PARDESH"
                   id="UTTAR PARDESH"
                   className={`btn ${state === "up-state" ? "active" : ""}`}
                   onClick={handleUpClick}
@@ -168,6 +171,7 @@ function App() {
                   UTTAR PARDESH
                 </button>
                 <button
+                  key="PUNJAB"
                   id="PUNJAB"
                   className={`btn ${state === "punjab-state" ? "active" : ""}`}
                   onClick={handlePunClick}
@@ -176,6 +180,7 @@ function App() {
                 </button>
                 <button
                   id="UTTRAKHAND"
+                  key="UTTRAKHAND"
                   className={`btn ${state === "uk-state" ? "active" : ""}`}
                   onClick={handleUkClick}
                 >
@@ -183,6 +188,7 @@ function App() {
                 </button>
                 <button
                   id="GOA"
+                  key="GOA"
                   className={`btn ${state === "goa-state" ? "active" : ""}`}
                   onClick={handleGoaClick}
                 >
@@ -190,6 +196,7 @@ function App() {
                 </button>
                 <button
                   id="MANIPUR"
+                  key="MANIPUR"
                   className={`btn ${state === "manipur-state" ? "active" : ""}`}
                   onClick={handleManipurClick}
                 >
