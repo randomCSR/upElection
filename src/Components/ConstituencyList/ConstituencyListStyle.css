@@ -1,9 +1,7 @@
 
 .dropDown{
     margin-top: 100px;
-    
      }
-  
   #constituency{
     height: 5vmin;
     font-size:18px;
@@ -12,45 +10,33 @@
     border-radius: 4px;
     background-color:#292828;
   } 
-  
-  
   .firstWidget{
     height: 240px; 
     
   }
-  
   .radioBtns{
     color: white;
     font-size: 20px;
     height:  100px;
     width: 400px; 
-  }
-  
+  } 
   .rb2{
     margin-left:100px;
   }
-  
   .rb3{
     margin-top: 20px;
   }
-  
-  
   .ratio{
     justify-content: center;
     background-color:#353330;
     color: white;
   
   }
-  
-
-  
 .tableWrapper {
     padding: 0px;
     overflow: hidden;
     width: 405px;
-   
   }
-  
    .table {
     width: 100%;
    }

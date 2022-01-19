@@ -3,28 +3,18 @@ import { Link, useParams } from "react-router-dom";
 import "./InfoStyle.css";
 import map from "./map.png";
 import photo from "./photo.jpg";
-import graph from "./graph.png";
 import {
   BarChart,
   Bar,
   XAxis,
   YAxis,
-  CartesianGrid,
+  // CartesianGrid,
   Tooltip,
   Legend
 } from "recharts";
 
 
-
-const customStyle = {
-  color: "#73e7fc",
-};
-
-
-
-
 function InfoPage(props) {
-  // const [constituency,setConstituency]=useState([])
   const { id } = useParams();
   const [data,setData] = useState([]);
   useEffect(() => {
@@ -58,7 +48,6 @@ function InfoPage(props) {
     }
   };
  
- 
   const barData = [
     {
       name: "2012",
@@ -76,91 +65,8 @@ function InfoPage(props) {
     }
   ];
 
-
-
   return (
 
-    // <div>
-    //   <Link to="/">
-    //     <h5 className="backToMap"> &lt; back to map </h5>
-    //   </Link>
-
-  //     <div className="infoContainer">
-  //       <div className="grid-container">
-  //         <div className="grid_item item1">
-  //           <h1 style={customStyle}>{data.name}</h1>
-  //         </div>
-  //         <div className="grid_item item2">
-  //           <p>Population</p><h1>{data.population}</h1>
-            
-  //         </div>
-  //         <div className="grid_item item3">
-  //           <p>Sex Ratio</p>
-  //           <h1>{data.sex_ratio}</h1>
-  //         </div>
-  //         <div className="grid_item item4">
-  //           <p>Literacy Rate</p>
-  //           <h1>{data.literacy}</h1>
-  //         </div>
-  //         <div className="grid_item item5">
-  //           <div className="map">
-  //             <img src={map} height="300" width="300" alt="Map here" />
-  //           </div>
-  //         </div>
-  //         <div className="grid_item item6">
-  //           <div>
-  //             <div className="photo">
-  //               <img
-  //                 className="inc"
-  //                 src={data.photo}
-  //                 height="180"
-  //                 width="180"
-  //                 alt="winner here"
-  //               />
-  //             </div>
-  //             <div className="detail">
-  //               <p>INCUMBENT</p>
-  //               <h2>{data.mla}</h2>
-  //               <p>{data.party}</p>
-  //               <p>
-  //                 AGE : <em style={customStyle}>{calculate_age(data.dob)}</em>
-  //               </p>
-  //               <p>
-  //                 EDUCATION : <em style={customStyle}>{data.education}</em>
-  //               </p>
-  //               <p>
-  //                 ASSET : <em style={customStyle}> &#x20B9; {data.assets}</em>
-  //               </p>
-  //               <p>
-  //                 CRIMINAL CASES : <em style={customStyle}>{data.criminal_case}</em>
-  //               </p>
-  //             </div>
-  //           </div>
-  //         </div>
-  //         <div className="grid_item item7">
-  //           <h1>Quick Facts</h1>
-  //           <ul>
-  //           <li>{data.quickfacts}</li>
-  //             <li>first quick fact</li>
-  //             <li>second quick fact</li>
-  //             <li>Third quick fact</li>
-  //             <li>Fourth quick fact</li>
-  //             <li>Fifth quick fact</li>
-  //             <li>sixth quick fact</li>
-  //           </ul>
-  //         </div>
-  //         <div className="grid_item item8">
-  //           <div className="graph">
-  //             <img src={graph} height="275" width="275" alt="graph here" />
-  //           </div>
-  //         </div>
-  //         <div className="grid_item item9">
-  //           <h2>VOTER TURN OUT : 2,18,376</h2>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
   <div>
      <Link to="/">
      <h5 className="backToMap"> &lt; back to map </h5>
@@ -220,7 +126,7 @@ function InfoPage(props) {
         </div>
         <div className="gridItem item7"> 
         <div className="winnerPic">
-            <img className="winnerImg" src={photo} alt="winner" />
+            <img className="winnerImg" src={photo} alt="firstRunnerup" />
             <div className="detail">
                <h4>{data.runnerup_name}</h4>
                <h5>{data.runnerup_votes}&nbsp;&nbsp;Votes</h5>

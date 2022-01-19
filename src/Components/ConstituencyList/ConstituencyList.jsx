@@ -62,7 +62,6 @@ function ConstituencyList(props) {
       
       
 <div className="tableWrapper box1" title = "Mohammadabad  Harendra  Candidate   Party   PARTY LOGO">
-{/* <span className = "" title = "Mohammadabad  Harendra  Candidate   Party   PARTY LOGO"> */}
 <table className="table">
   <thead className="tHeading">
     <tr>
