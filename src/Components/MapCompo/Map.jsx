@@ -13,9 +13,9 @@ function Map(props) {
 
   return (
     <>
-      <Link to={url}>
+      <Link to={url} key={props.id}>
         {props.points === undefined ? (
-          <g data-tip data-for="singleBox">
+          <g data-tip data-for="singleBox" key={`poly${props.id}`}>
             <path
               onMouseOver={getId}
               key={props.id}
@@ -27,7 +27,7 @@ function Map(props) {
             />
           </g>
         ) : (
-          <g data-tip data-for="singleBox">
+          <g data-tip data-for="singleBox" key={`poly${props.id}`}>
             <polygon
               onMouseOver={getId}
               dataname={props.name}

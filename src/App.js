@@ -10,22 +10,22 @@ import {
   ManipurArrMap,
   UttrakhandArrMap,
 } from "./MapJsonData/ArrMap.json";
-import InfoPage from "./Components/InfoPage/InfoPage";
 import Map from "./Components/MapCompo/Map";
 import PopUp from "./Components/popUpBox/popUp";
-import PieChartCompo from "./Components/PieChart/PieChartCompo"
+import PieChartCompo from "./Components/PieChart/PieChartCompo";
 
 function App() {
   const [state, setState] = useState("30");
   const [data, setData] = useState([]);
   const [popUpData, setPopUpData] = useState();
   const [pieData, setPieData] = useState();
-  const [selectedYear, setSelectedYear] = useState("2017")
+  const [selectedYear, setSelectedYear] = useState("2017");
   useEffect(() => {
     getConstituencyData("en");
-  }, []);
- 
+  }, [state, selectedYear]);
+
   const getConstituencyData = async (lang = "en") => {
+    console.log("year: ", selectedYear, "id: ", state);
     const body = new URLSearchParams();
     body.append("state_id", state);
     body.append("year", selectedYear);
@@ -45,6 +45,7 @@ function App() {
         }
       );
       const { response, piechart } = await res.json();
+      console.log("MapData: ", response);
       setData(response);
       setPieData(piechart);
       return {};
@@ -52,119 +53,53 @@ function App() {
       return Promise.reject(error);
     }
   };
- 
+
   const onHoverCalled = (data) => {
+    console.log(data);
     setPopUpData(data);
-    // console.log("Data", data);
   };
   function createMap(cnsTerms) {
     return (
-      <>
-        <Map
-          apiData={data.filter(
-            (v) => v.id.toString() === cnsTerms.dataId.toString()
-          )}
-          onHoverCalled={onHoverCalled}
-          key={cnsTerms.dataId}
-          id={cnsTerms.dataId}
-          cnsName={cnsTerms.dataName}
-          class={cnsTerms.className}
-          points={cnsTerms.points}
-          dd={cnsTerms.d}
-        />
-      </>
+      <Map
+        apiData={data.filter(
+          (v) => v.constituency_no.toString() === cnsTerms.dataId.toString()
+        )}
+        onHoverCalled={onHoverCalled}
+        key={cnsTerms.dataId}
+        id={cnsTerms.dataId}
+        cnsName={cnsTerms.dataName}
+        class={cnsTerms.className}
+        points={cnsTerms.points}
+        dd={cnsTerms.d}
+      />
     );
   }
 
-  function punMap() {
+  function createMapSvg(viewbox, arrayData, id) {
     return (
       <>
-        <div className="mapdiv">
-          <svg version="1.1" viewBox="0 0 600 600" height="1000px">
-            {ArrMap.map(createMap)}
+        <div className="mapdiv" key={`Map${id}`}>
+          <svg version="1.1" viewBox={viewbox} height="1000px" key={`SVG${id}`}>
+            {arrayData.map(createMap)}
           </svg>
         </div>
-        <PopUp data={popUpData} />
-      </>
-    );
-  }
-
-  function upMap() {
-    return (
-      <>
-        <div className="mapdiv">
-          <svg version="1.1" viewBox="80 140 950 950" height="1000px">
-            {UpArrMap.map(createMap)}
-          </svg>
-        </div>
-        <PopUp data={popUpData} />
-      </>
-    );
-  }
-
-  function ukMap() {
-    return (
-      <>
-        <div className="mapdiv">
-          <svg version="1.1" viewBox="100 150 900 900" height="1000px">
-            {UttrakhandArrMap.map(createMap)}
-          </svg>
-        </div>
-        <PopUp data={popUpData} />
-      </>
-    );
-  }
-
-  function goaMap() {
-    return (
-      <>
-        <div className="mapdiv">
-          <svg version="1.1" viewBox="50 60 650 650" height="1000px">
-            {GoaArrMap.map(createMap)}
-          </svg>
-        </div>
-        <PopUp data={popUpData} />
-      </>
-    );
-  }
-
-  function maniMap() {
-    return (
-      <>
-        <div className="mapdiv">
-          <svg version="1.1" viewBox="100 140 800 800" height="1000px">
-            {ManipurArrMap.map(createMap)}
-          </svg>
-        </div>
-        <PopUp data={popUpData} />
+        <PopUp data={popUpData} key={`ToolTip${id}`} />
       </>
     );
   }
   const onYearChange = (data) => {
     setSelectedYear(data);
-    console.log("Data", data);
+    console.log("YearData", data);
   };
 
-  const handleUpClick = (event) => {
-    setState("30");
-  };
-  const handlePunClick = (event) => {
-    setState("24");
-  };
-  const handleUkClick = (event) => {
-    setState("31");
-  };
-  const handleGoaClick = (event) => {
-    setState("1");
-  };
-  const handleManipurClick = (event) => {
-    setState("2");
+  const handleStateClick = (state_id) => {
+    console.log("StateID: ", state_id);
+    setState(state_id);
   };
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/infopage/:id" element={<InfoPage state = {state} selectedYear = {selectedYear} />} />
         <Route
           path="/"
           element={
@@ -174,7 +109,7 @@ function App() {
                   key="UTTAR PARDESH"
                   id="UTTAR PARDESH"
                   className={`btn ${state === "30" ? "active" : ""}`}
-                  onClick={handleUpClick}
+                  onClick={() => handleStateClick("30")}
                 >
                   UTTAR PARDESH
                 </button>
@@ -182,7 +117,7 @@ function App() {
                   key="PUNJAB"
                   id="PUNJAB"
                   className={`btn ${state === "24" ? "active" : ""}`}
-                  onClick={handlePunClick}
+                  onClick={() => handleStateClick("24")}
                 >
                   PUNJAB
                 </button>
@@ -190,7 +125,7 @@ function App() {
                   id="UTTRAKHAND"
                   key="UTTRAKHAND"
                   className={`btn ${state === "31" ? "active" : ""}`}
-                  onClick={handleUkClick}
+                  onClick={() => handleStateClick("31")}
                 >
                   UTTRAKHAND
                 </button>
@@ -198,7 +133,7 @@ function App() {
                   id="GOA"
                   key="GOA"
                   className={`btn ${state === "1" ? "active" : ""}`}
-                  onClick={handleGoaClick}
+                  onClick={() => handleStateClick("1")}
                 >
                   GOA
                 </button>
@@ -206,20 +141,26 @@ function App() {
                   id="MANIPUR"
                   key="MANIPUR"
                   className={`btn ${state === "2" ? "active" : ""}`}
-                  onClick={handleManipurClick}
+                  onClick={() => handleStateClick("2")}
                 >
                   MANIPUR
                 </button>
               </span>
 
               <div className="row2">
-                {state === "24" && punMap()}
-                {state === "30" && upMap()}
-                {state === "31" && ukMap()}
-                {state === "1" && goaMap()}
-                {state === "2" && maniMap()}
+                {state === "24" && createMapSvg("0 0 600 600", ArrMap, 24)}
+                {state === "30" && createMapSvg("80 140 950 950", UpArrMap, 30)}
+                {state === "31" &&
+                  createMapSvg("100 150 900 900", UttrakhandArrMap, 31)}
+                {state === "1" && createMapSvg("50 60 650 650", GoaArrMap, 1)}
+                {state === "2" &&
+                  createMapSvg("100 140 800 800", ManipurArrMap, 2)}
                 <div className="firstWidget">
-                  <ConstituencyList dropDownList={data}  onYearChange = {onYearChange} />
+                  <ConstituencyList
+                    dropDownList={data}
+                    onYearChange={onYearChange}
+                    onHoverCalled={onHoverCalled}
+                  />
                   <div className="secondWidget">
                     <PieChartCompo pieChartData={pieData} />
                   </div>
