@@ -1,56 +1,59 @@
-
-.dropDown{
-    margin-top: 100px;
-     }
-  #constituency{
-    height: 5vmin;
-    font-size:18px;
-    color: rgb(233, 232, 232);
-    width: 400px;
-    border-radius: 4px;
-    background-color:#292828;
-  } 
-  /* .firstWidget{
-    height: 240px; 
-    
-  } */
-  .radioBtns{
-    color: white;
-    font-size: 20px;
-    height:  100px;
-    width: 400px; 
-  } 
-  .rb2{
-    margin-left:100px;
-  }
-  .rb3{
-    margin-top: 20px;
-  }
-
-  input[type='radio']:after {
-    width: 20px;
-    height: 20px;
-    border-radius: 15px;
-    top: -7px;
-    left: -8px;
-    position: relative;
-    background-color: #000000;
-    content: '';
-    display: inline-block;
-    visibility: visible;
-    border: 2px solid white;
+.dropDown {
+  margin-top: 2rem;
+}
+#constituency {
+  height: 3rem;
+  font-size: 18px;
+  color: rgb(233, 232, 232);
+  width: 25rem;
+  border-radius: 4px;
+  background-color: #292828;
 }
 
-input[type='radio']:checked:after {
-    width: 20px;
-    height: 20px;
-    border-radius: 15px;
-    top: -7px;
-    left: -8px;
-    position: relative;
-    background-color: #ffffff;
-    content: '';
-    display: inline-block;
-    visibility: visible;
-    border: 2px solid white;
+.radioBtns {
+  color: white;
+  font-size: 16px;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 0.5rem;
+}
+
+.rb {
+  flex: 0 0 50%;
+  margin-bottom: 1.5rem;
+}
+.rb3 {
+  flex: 0 0 100%;
+  margin-bottom: 1.5rem;
+}
+input[type="radio"] {
+  margin-right: 1rem;
+}
+input[type="radio"]:after {
+  width: 20px;
+  height: 20px;
+  border-radius: 15px;
+  top: -4px;
+  left: -10px;
+  position: relative;
+  background-color: #000000;
+  content: "";
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+}
+
+input[type="radio"]:checked:after {
+  width: 20px;
+  height: 20px;
+  border-radius: 15px;
+  top: -4px;
+  left: -10px;
+  position: relative;
+  background-color: #ffffff;
+  content: "";
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
 }

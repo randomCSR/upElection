@@ -1,136 +1,150 @@
-body{
-    background-color:#000000;
-    margin:0px;
-    padding:0px;
+body {
+  background-color: #000000;
+  margin: 0px;
+  padding: 0px;
 }
-.backToMap{
-  color:#ffff;
-  margin:50px 150px;
-  width:150px;
+.backToMap {
+  color: #ffff;
+  margin: 50px 150px;
+  width: 150px;
   font-size: 22px;
   text-decoration: none;
 }
-  .gridContainer{
-    display: grid;
-    margin-left:100px;
-    margin-right:250px;
-    grid-column-gap: 30px;
-      grid-row-gap: 30px;
-  
-  }
-  .gridContainer > div {
-    background-color:#000000;
-    font-size: 40px;
-    font-style: inherit;
-    font-weight: 900;
-  }
+.scaling-svg-container {
+  position: relative;
+  height: 0;
+  width: 100%;
+  padding: 0;
+  padding-bottom: 100%;
+  /* override this inline for aspect ratio other than square */
+}
+.scaling-svg {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+.gridContainer {
+  display: grid;
+  margin-left: 100px;
+  margin-right: 250px;
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
+}
+.gridContainer > div {
+  background-color: #000000;
+  font-size: 40px;
+  font-style: inherit;
+  font-weight: 900;
+}
 
-.item1{
-  grid-area:1/1/10/2;
+.item1 {
+  grid-area: 1/1/10/2;
   text-align: center;
 }
-.item2{
-  color:white;    
-  grid-area:1/2/2/6;
+.item2 {
+  color: white;
+  grid-area: 1/2/2/6;
   text-align: center;
 }
-.constName{
-  font-size:50px;
+.constName {
+  font-size: 50px;
   font-weight: bold;
 }
-.item3{
-  grid-area:2/2/11/3;
-  border : 2px solid black;
-  color:rgb(111, 111, 252);
+.item3 {
+  grid-area: 2/2/11/3;
+  border: 2px solid black;
+  color: rgb(111, 111, 252);
   text-align: center;
   padding: 80px 30px;
-  
 }
-.item4{
-  grid-area:2/3/11/6;
-  border : 2px solid black;
-  color:rgb(111, 111, 252);
-  padding:30px;
+.item4 {
+  grid-area: 2/3/11/6;
+  border: 2px solid black;
+  color: rgb(111, 111, 252);
+  padding: 30px;
   position: relative;
 }
-.putInLeft{
+.putInLeft {
   float: left;
 }
-.gridItem .largeText{
-  font-size:30px;
+.gridItem .largeText {
+  font-size: 30px;
   font-weight: 800;
 }
-#inBottom{
+#inBottom {
   /* position: absolute;  */
   /* bottom: 0;  */
 }
-.percentageGap{
-  display:flex;
+.percentageGap {
+  display: flex;
   margin-top: 150px;
   margin-left: 250px;
-  
 }
 
-.item5{
-  grid-area:10/1/20/2;
-  font-size:  10px;
+.item5 {
+  grid-area: 10/1/20/2;
+  font-size: 10px;
 }
-.graph{
+.graph {
   font-size: 15px;
 }
-.item6{
-  grid-area:11/2/18/4;
-  border : 2px solid black;
+.item6 {
+  grid-area: 11/2/18/4;
+  border: 2px solid black;
 }
-.winnerPic{
-  display:flex;
-  border-radius:100px;
-  float:left;
-}
-.winnerImg{
-  float:left;
-  height:180px;
-  width:180px;
+.winnerPic {
+  display: flex;
   border-radius: 100px;
-  padding:15px;
+  float: left;
 }
-.detail{
-  color:white;
-  
+.winnerImg {
+  float: left;
+  height: 180px;
+  width: 180px;
+  border-radius: 100px;
+  padding: 15px;
+}
+.detail {
+  color: white;
+
   margin-top: 30px;
-  float:left;
+  float: left;
   margin-left: 10px;
   text-align: left;
-  
 }
-.won{
+.won {
   border-radius: 12px;
   align-items: center;
-  display:inline-block;
-  padding:2px 6px;
-  color:white;
-  background-color:rgb(32, 228, 32);
+  display: inline-block;
+  padding: 2px 6px;
+  color: white;
+  background-color: rgb(32, 228, 32);
 }
 
-.winnerBottomRight{
-  float:right;
-  margin-top:28px;
+.winnerBottomRight {
+  float: right;
+  margin-top: 28px;
 }
 
-.item7{
-  grid-area:11/4/18/6;
-  border : 2px solid black;
+.item7 {
+  grid-area: 11/4/18/6;
+  border: 2px solid black;
 }
 
-.lost{
+.lost {
   border-radius: 12px;
   align-items: center;
-  display:inline-block;
-  padding:2px 6px;
-  color:white;
-  background-color:red;
+  display: inline-block;
+  padding: 2px 6px;
+  color: white;
+  background-color: red;
 }
 
-.item3, .item4, .item6, .item7{
+.item3,
+.item4,
+.item6,
+.item7 {
   border: 2px solid rgb(111, 111, 252);
 }

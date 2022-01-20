@@ -1,3 +1,8 @@
+.App {
+  display: flex;
+  flex: 1 1;
+  align-content: center;
+}
 body {
   background-color: #000000;
 }
@@ -7,18 +12,21 @@ button {
   cursor: pointer;
   outline: inherit;
 }
+.container {
+  margin-top: 1rem;
+  margin-bottom: 5rem;
+  width: 92vw;
+}
 .btn {
-  background-color: 000000;
+  background-color: transparent;
   color: white;
   padding: 9px;
-  border: 1px solid #0766fb;
-  border-radius: 1px;
   padding-left: 25px;
   padding-right: 25px;
 }
 
 .btn:hover {
-  background-color: #0766fb;
+  background-color: transparent;
   color: white;
 }
 
@@ -32,31 +40,29 @@ button {
   padding: "20px";
 } */
 .mapdiv {
-  width: 100%;
-  margin-left: 100px;
+  margin-left: 3rem;
+  margin-right: 1rem;
+  flex: 2 0;
+  align-items: stretch;
 }
 
 .row2 {
   display: flex;
-  justify-content: space-around;
-  justify-content:space-between;
+  align-items: flex-start;
 }
 
 .stateBtnHeader {
-  justify-content: center;
-  margin-top: 100px;
-  display: flex;
+  margin: auto;
+  border: 1px solid #0766fb;
+  border-radius: 1px;
+  width: fit-content;
 }
-.firstWidget{
-  height: 200px; 
-  
+.firstWidget {
+  flex: 1 1;
 }
-.secondWidget{
-  margin: 100px 0px;
+.secondWidget {
+  margin: 3rem 0rem;
 }
-
-
-
 
 .st0:hover {
   fill: #a0a0a0;

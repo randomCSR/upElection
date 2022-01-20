@@ -7,11 +7,9 @@ export default function PieChartCompo({ pieChartData }) {
   console.log(pieChartData);
   return (
     <div>
-      <div className="ratio">
-        <p>403/403</p>
-      </div>
+      <div className="ratioComponent">403/403</div>
 
-      <PieChart width={700} height={240}>
+      <PieChart width={500} height={240}>
         <Pie
           data={pieChartData}
           cx={200}
@@ -42,7 +40,7 @@ export default function PieChartCompo({ pieChartData }) {
 
           <tbody className="tBody">
             {pieChartData.map((pieChart) => (
-              <tr>
+              <tr key={pieChart.party}>
                 <td>{pieChart.party}</td>
                 <td>{pieChart.wins}</td>
               </tr>
