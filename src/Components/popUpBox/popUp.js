@@ -3,6 +3,7 @@ import ReactTooltip from "react-tooltip";
 
 function PopUp({ data }) {
   if (!data) return <div></div>;
+
   return (
     <div>
       <ReactTooltip id="singleBox" effect="solid" type="light">
