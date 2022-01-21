@@ -40,7 +40,7 @@ input[type="radio"]:after {
   height: 20px;
   border-radius: 15px;
   top: -4px;
-  left: -10px;
+  left: -8px;
   position: relative;
   background-color: #000000;
   content: "";
@@ -54,7 +54,7 @@ input[type="radio"]:checked:after {
   height: 20px;
   border-radius: 15px;
   top: -4px;
-  left: -10px;
+  left: -8px;
   position: relative;
   background-color: #ffffff;
   content: "";

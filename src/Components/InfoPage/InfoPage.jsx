@@ -8,6 +8,8 @@ import {
   UpArrMap,
   ManipurArrMap,
   UttrakhandArrMap,
+  maleSvg,
+  femaleSvg,
 } from "../../MapJsonData/ArrMap.json";
 import {
   upStateId,
@@ -51,7 +53,7 @@ function InfoPage(props) {
         );
         break;
       case manipurStateId:
-        pointsData = manipurStateId.filter(
+        pointsData = ManipurArrMap.filter(
           (v) => v.dataId.toString() === id.toString()
         );
         break;
@@ -110,6 +112,11 @@ function InfoPage(props) {
     },
   ];
 
+  const m = 3; 
+  const f = 7;
+
+  
+
   return (
     <div>
       <div className="backToMap" onClick={() => props.handleBackClick()}>
@@ -157,12 +164,30 @@ function InfoPage(props) {
           <h1 className="constName"> {data.name}</h1>{" "}
         </div>
         <div className="gridItem item3">
-          <h5> ELECTORS </h5> {data.total_voters}{" "}
+          <h5> ELECTORS </h5> {data.total_voters}2673652{" "}
         </div>
         <div className="gridItem item4">
-          <h5 className="putInLeft">
-            VOTER TURN OUT : <em className="largeText">{data.voterturnout}</em>
-          </h5>
+          <div>
+            <h5 className="putInLeft">
+              VOTER TURN OUT : <em className="largeText">{data.voterturnout}6767</em>
+            </h5>
+          </div>
+          {[...Array(m)].map((e, i) => <span className="male_female" key={i}>
+  <svg width="46" height="86" viewBox="0 0 46 86" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path
+    d={maleSvg.d}
+    fill={maleSvg.fill}
+    />
+  </svg>
+</span>)}
+{[...Array(f)].map((e, i) => <span className="male_female" key={i}>
+  <svg width="46" height="86" viewBox="0 0 46 86" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path
+    d={femaleSvg.d}
+    fill={femaleSvg.fill}
+    />
+  </svg>
+</span>)}
           <div id="inBottom">
             <div className="percentageGap">
               <div>
