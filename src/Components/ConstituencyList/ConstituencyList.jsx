@@ -13,32 +13,31 @@ function ConstituencyList({ dropDownList, onYearChange, onHoverCalled }) {
   return (
     <div className="dropDown">
       <div className="radioBtns">
-        <div className="rb">
-          <div className=" rb1">
-            <input
-              key="1"
-              type="radio"
-              value="2022"
-              name="year"
-              id="2022"
-              onChange={handleYearChange}
-            />
-            2022 Election
-          </div>
-          <div className="rb2">
-            <input
-              key="2"
-              type="radio"
-              value="2017"
-              name="year"
-              defaultChecked
-              id="2017"
-              onChange={handleYearChange}
-            />
-            2017 Election
-          </div>
+        <div className=" rb">
+          <input
+            key="1"
+            type="radio"
+            value="2022"
+            name="year"
+            id="2022"
+            onChange={handleYearChange}
+          />
+          2022 Election
         </div>
-        <div className="rb3">
+        <div className="rb">
+          <input
+            key="2"
+            type="radio"
+            value="2017"
+            name="year"
+            defaultChecked
+            id="2017"
+            onChange={handleYearChange}
+          />
+          2017 Election
+        </div>
+
+        <div className="rb">
           <input
             key="3"
             type="radio"

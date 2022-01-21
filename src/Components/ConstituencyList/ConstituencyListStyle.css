@@ -14,24 +14,13 @@
   align-items: flex-start;
   flex-wrap: wrap;
   padding: 0.5rem;
-  flex-direction: column;
 }
 .rb {
-  flex: 2 1;
-  margin-bottom: 1.5rem;
-  width: 80%;
+  flex: 50% 0 0;
+  padding: 0.5rem;
+  white-space: nowrap;
 }
-.rb1 {
-  float: left;
-}
-.rb2 {
-  float: right;
-}
-.rb3 {
-  flex: 1 1;
-  float: left;
-  margin-bottom: 1.5rem;
-}
+
 input[type="radio"] {
   margin-right: 1rem;
 }

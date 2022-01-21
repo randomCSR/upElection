@@ -112,11 +112,11 @@ function InfoPage(props) {
     },
   ];
 
-  const m = 3; 
+  const m = 3;
   const f = 7;
-
-  
-
+  const percent = 46 * 0.3;
+  console.log(percent);
+  const v = "0 0 " + percent + " 86";
   return (
     <div>
       <div className="backToMap" onClick={() => props.handleBackClick()}>
@@ -169,25 +169,48 @@ function InfoPage(props) {
         <div className="gridItem item4">
           <div>
             <h5 className="putInLeft">
-              VOTER TURN OUT : <em className="largeText">{data.voterturnout}6767</em>
+              VOTER TURN OUT :{" "}
+              <em className="largeText">{data.voterturnout}6767</em>
             </h5>
           </div>
-          {[...Array(m)].map((e, i) => <span className="male_female" key={i}>
-  <svg width="46" height="86" viewBox="0 0 46 86" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path
-    d={maleSvg.d}
-    fill={maleSvg.fill}
-    />
-  </svg>
-</span>)}
-{[...Array(f)].map((e, i) => <span className="male_female" key={i}>
-  <svg width="46" height="86" viewBox="0 0 46 86" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path
-    d={femaleSvg.d}
-    fill={femaleSvg.fill}
-    />
-  </svg>
-</span>)}
+          {[...Array(m)].map((e, i) => (
+            <span className="male_female" key={i}>
+              {i !== m - 1 ? (
+                <svg
+                  width="46"
+                  height="86"
+                  viewBox="0 0 46 86"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d={maleSvg.d} fill={maleSvg.fill} />
+                </svg>
+              ) : (
+                <svg
+                  width={percent}
+                  height="86"
+                  viewBox={v}
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d={maleSvg.d} fill={maleSvg.fill} />
+                </svg>
+              )}
+            </span>
+          ))}
+          {[...Array(f)].map((e, i) => (
+            <span className="male_female" key={i}>
+              <svg
+                width="46"
+                height="86"
+                viewBox="0 0 46 86"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d={femaleSvg.d} fill={femaleSvg.fill} />
+              </svg>
+            </span>
+          ))}
           <div id="inBottom">
             <div className="percentageGap">
               <div>
