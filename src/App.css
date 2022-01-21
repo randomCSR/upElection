@@ -1,7 +1,6 @@
 .App {
-  display: flex;
-  flex: 1 1;
-  align-content: center;
+  width: 95vw;
+  margin: auto;
 }
 body {
   background-color: #000000;
@@ -15,7 +14,6 @@ button {
 .container {
   margin-top: 1rem;
   margin-bottom: 5rem;
-  width: 92vw;
 }
 .btn {
   background-color: transparent;
@@ -34,21 +32,16 @@ button {
   background-color: #0766fb;
   color: white;
 }
-/* .toolTipHeading {
-  color: "white";
-  background-color: #3ac9de;
-  padding: "20px";
-} */
+
 .mapdiv {
-  margin-left: 3rem;
-  margin-right: 1rem;
-  flex: 2 0;
-  align-items: stretch;
+  flex: 2;
+  flex-shrink: 0;
 }
 
 .row2 {
   display: flex;
-  align-items: flex-start;
+  margin-top: 5rem;
+  width: 100%;
 }
 
 .stateBtnHeader {
@@ -58,7 +51,11 @@ button {
   width: fit-content;
 }
 .firstWidget {
-  flex: 1 1;
+  flex: 1;
+}
+.firstWidgetContainer {
+  width: 90%;
+  margin: 0 auto;
 }
 .secondWidget {
   margin: 3rem 0rem;

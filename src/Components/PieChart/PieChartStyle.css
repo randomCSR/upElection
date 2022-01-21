@@ -3,11 +3,14 @@
   color: white;
   margin-bottom: 2rem;
 }
-
+.pieChartClass {
+  width: 90%;
+  margin: auto;
+}
 .tableWrapper {
   padding: 0px;
   overflow: hidden;
-  width: 405px;
+  width: 100%;
 }
 .table {
   width: 100%;

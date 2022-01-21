@@ -193,16 +193,18 @@ function App() {
             {state === manipurStateId &&
               createMapSvg("100 140 800 800", ManipurArrMap, manipurStateId)}
             <div className="firstWidget">
-              <ConstituencyList
-                dropDownList={data}
-                onYearChange={onYearChange}
-                onHoverCalled={onHoverCalled}
-              />
-              {
-                <div className="secondWidget">
-                  <PieChartCompo pieChartData={pieData} />
-                </div>
-              }
+              <div className="firstWidgetContainer">
+                <ConstituencyList
+                  dropDownList={data}
+                  onYearChange={onYearChange}
+                  onHoverCalled={onHoverCalled}
+                />
+                {
+                  <div className="secondWidget">
+                    <PieChartCompo pieChartData={pieData} />
+                  </div>
+                }
+              </div>
             </div>
           </div>
         </div>

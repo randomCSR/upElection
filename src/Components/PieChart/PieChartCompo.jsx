@@ -8,27 +8,27 @@ export default function PieChartCompo({ pieChartData }) {
   return (
     <div>
       <div className="ratioComponent">403/403</div>
-
-      <PieChart width={500} height={240}>
-        <Pie
-          data={pieChartData}
-          cx={200}
-          cy={200}
-          startAngle={180}
-          endAngle={0}
-          innerRadius={0}
-          outerRadius={200}
-          fill="colors"
-          paddingAngle={0}
-          dataKey="wins"
-          lable="true"
-        >
-          {pieChartData.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={entry.color} />
-          ))}
-        </Pie>
-      </PieChart>
-
+      <div className="pieChartClass">
+        <PieChart width={330} height={200} style={{ margin: "auto" }}>
+          <Pie
+            data={pieChartData}
+            cx={150}
+            cy={150}
+            startAngle={180}
+            endAngle={0}
+            innerRadius={0}
+            outerRadius={150}
+            fill="colors"
+            paddingAngle={0}
+            dataKey="wins"
+            lable="true"
+          >
+            {pieChartData.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={entry.color} />
+            ))}
+          </Pie>
+        </PieChart>
+      </div>
       <div className="tableWrapper box1">
         <table className="table">
           <thead className="tHeading">
