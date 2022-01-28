@@ -29,6 +29,37 @@ function InfoPage(props) {
     getPointsData();
   }, []);
 
+  const getCordinates = (points) => {
+    const a = points.split(' ').filter(p => p);
+    return a.map(str => {
+      const [x, y] = str.split(',');
+      return ({ x, y })
+    });
+  }
+  const getExtremes = (points) => {
+    const cordinates = getCordinates(points);
+    const xPoints = cordinates.map(c => c.x);
+    const yPoints = cordinates.map(c => c.y);
+    const xMin = Math.min(...xPoints);
+    const yMin = Math.min(...yPoints);
+    const xMax = Math.max(...xPoints);
+    const yMax = Math.max(...yPoints);
+    return ({ xMin, yMin, xMax, yMax });
+  }
+
+  const getBoundingBox = (points) => {
+    if (!points) return;
+    const { xMin, yMin, xMax, yMax } = getExtremes(points);
+    return `0 0 ${xMax - xMin} ${yMax - yMin}`;
+  }
+
+  const normalize = (points) => {
+    const { xMin, yMin } = getExtremes(points);
+    const cordinates = getCordinates(points);
+    const normalised = cordinates.map(c => ({ x: c.x - xMin, y: c.y - yMin }));
+    return normalised.reduce((a, c) => a + `${c.x},${c.y} `, '');
+  }
+
   const getPointsData = () => {
     let pointsData;
     switch (props.state_id) {
@@ -63,6 +94,7 @@ function InfoPage(props) {
         );
         break;
     }
+    
     setPointsData(pointsData[0]);
   };
 
@@ -87,7 +119,6 @@ function InfoPage(props) {
         }
       );
       const { response } = await res.json();
-      // console.log(response[0]);
       setData(response[0]);
       return {};
     } catch (error) {
@@ -129,7 +160,7 @@ function InfoPage(props) {
           <div className="scaling-svg-container">
             <svg
               version="1.1"
-              viewBox="80 140 950 950"
+              viewBox={getBoundingBox(pointsData?.points)}
               width="100%"
               height="100%"
               className="scaling-svg"
@@ -150,7 +181,7 @@ function InfoPage(props) {
                       dataname={pointsData.name}
                       className={pointsData.class}
                       fill="red"
-                      points={pointsData.points}
+                      points={normalize(pointsData.points)}
                     />
                   </g>
                 )
