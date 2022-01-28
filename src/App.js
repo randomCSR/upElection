@@ -35,7 +35,6 @@ function App() {
   }, [state, selectedYear]);
 
   const getConstituencyData = async (lang = "en") => {
-    console.log("year: ", selectedYear, "id: ", state);
     const body = new URLSearchParams();
     body.append("state_id", state);
     body.append("year", selectedYear);
@@ -55,7 +54,6 @@ function App() {
         }
       );
       const { response, piechart } = await res.json();
-      console.log("MapData: ", response);
       setData(response);
       setPieData(piechart);
       return {};
@@ -65,7 +63,6 @@ function App() {
   };
 
   const onHoverCalled = (data) => {
-    console.log(data);
     setPopUpData(data);
   };
   function createMap(cnsTerms) {
@@ -106,16 +103,13 @@ function App() {
   }
   const onYearChange = (data) => {
     setSelectedYear(data);
-    console.log("YearData", data);
   };
 
   const handleStateClick = (state_id) => {
-    console.log("StateID: ", state_id);
     setState(state_id);
   };
 
   const handleIdClick = (id) => {
-    console.log("Click: ", id);
     setId(id);
     setShowInfo(true);
   };

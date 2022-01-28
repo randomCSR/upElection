@@ -4,7 +4,6 @@ import "./PieChartStyle.css";
 
 export default function PieChartCompo({ pieChartData }) {
   if (!pieChartData) return <div></div>;
-  console.log(pieChartData);
   return (
     <div>
       <div className="ratioComponent">403/403</div>

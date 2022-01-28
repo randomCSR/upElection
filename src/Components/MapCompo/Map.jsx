@@ -8,7 +8,6 @@ function Map(props) {
     const dt = props.apiData;
     props.onHoverCalled(dt[0]);
   }
-
   return (
     <>
       {props.points === undefined ? (

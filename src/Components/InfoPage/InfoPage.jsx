@@ -33,7 +33,7 @@ function InfoPage(props) {
     const a = points.split(' ').filter(p => p);
     return a.map(str => {
       const [x, y] = str.split(',');
-      return ({ x, y })
+      return ({ x: Number(x), y: Number(y) })
     });
   }
   const getExtremes = (points) => {
@@ -48,7 +48,6 @@ function InfoPage(props) {
   }
 
   const getBoundingBox = (points) => {
-    if (!points) return;
     const { xMin, yMin, xMax, yMax } = getExtremes(points);
     return `0 0 ${xMax - xMin} ${yMax - yMin}`;
   }
@@ -94,7 +93,6 @@ function InfoPage(props) {
         );
         break;
     }
-    
     setPointsData(pointsData[0]);
   };
 
@@ -146,7 +144,6 @@ function InfoPage(props) {
   const m = 3;
   const f = 7;
   const percent = 46 * 0.3;
-  console.log(percent);
   const v = "0 0 " + percent + " 86";
   return (
     <div>
@@ -158,37 +155,21 @@ function InfoPage(props) {
       <div className="gridContainer">
         <div className="gridItem item1">
           <div className="scaling-svg-container">
-            <svg
+            {pointsData?.points && (<svg
               version="1.1"
               viewBox={getBoundingBox(pointsData?.points)}
               width="100%"
               height="100%"
-              className="scaling-svg"
-            >
-              {pointsData ? (
-                pointsData.points === undefined ? (
-                  <g data-tip data-for="singleBox">
-                    <path
-                      dataname={pointsData.cnsName}
-                      className={pointsData.class}
-                      fill="red"
-                      d={pointsData.dd}
-                    />
-                  </g>
-                ) : (
-                  <g data-tip data-for="singleBox">
-                    <polygon
-                      dataname={pointsData.name}
-                      className={pointsData.class}
-                      fill="red"
-                      points={normalize(pointsData.points)}
-                    />
-                  </g>
-                )
-              ) : (
-                ""
-              )}
-            </svg>
+              className="scaling-svg">
+              <g data-tip data-for="singleBox">
+                <polygon
+                  dataname={pointsData.name}
+                  className={pointsData.class}
+                  fill="red"
+                  points={normalize(pointsData?.points)}
+                />
+              </g>
+            </svg>)}
           </div>
         </div>
         <div className="gridItem item2">
