@@ -59,7 +59,7 @@ function App() {
       console.log("MapData: ", response);
       setData(response);
       setPieData(piechart);
-      setconstituencyRatio(constituencyCount)
+      setconstituencyRatio(constituencyCount);
       return {};
     } catch (error) {
       return Promise.reject(error);
@@ -70,7 +70,7 @@ function App() {
     console.log(data);
     setPopUpData(data);
   };
- 
+
   function createMap(cnsTerms) {
     return (
       <Map
@@ -126,97 +126,102 @@ function App() {
     setShowInfo(false);
   };
   const onSelectCalled = (data) => {
-    console.log(data);  
+    console.log(data);
     setId(data.id);
     setShowInfo(true);
   };
-  console.log(state)
+  console.log(state);
   return (
     <div className="App">
-      {isShowInfo? (
-        <InfoPage
-          id={id}
-          selectedYear={selectedYear}
-          state_id={state}
-          handleBackClick={handleBackClick}
-        />
-      ) : (
-        <div className="container">
-          <div className="stateBtnHeader">
-            <button
-              key="UTTAR PARDESH"
-              id="UTTAR PARDESH"
-              className={`btn ${state === upStateId ? "active" : ""}`}
-              onClick={() => handleStateClick(upStateId)}
-            >
-              UTTAR PRADESH
-            </button>
-            <button
-              key="PUNJAB"
-              id="PUNJAB"
-              className={`btn ${state === punjabStateId ? "active" : ""}`}
-              onClick={() => handleStateClick(punjabStateId)}
-            >
-              PUNJAB
-            </button>
-            <button
-              id="UTTRAKHAND"
-              key="UTTRAKHAND"
-              className={`btn ${state === uttrakhandStateId ? "active" : ""}`}
-              onClick={() => handleStateClick(uttrakhandStateId)}
-            >
-              UTTRAKHAND
-            </button>
-            <button
-              id="GOA"
-              key="GOA"
-              className={`btn ${state === goaStateId ? "active" : ""}`}
-              onClick={() => handleStateClick(goaStateId)}
-            >
-              GOA
-            </button>
-            <button
-              id="MANIPUR"
-              key="MANIPUR"
-              className={`btn ${state === manipurStateId ? "active" : ""}`}
-              onClick={() => handleStateClick(manipurStateId)}
-            >
-              MANIPUR
-            </button>
-          </div>
+      <div className="container">
+        {isShowInfo ? (
+          <InfoPage
+            id={id}
+            selectedYear={selectedYear}
+            state_id={state}
+            handleBackClick={handleBackClick}
+          />
+        ) : (
+          <>
+            <div className="stateBtnHeader">
+              <button
+                key="UTTAR PARDESH"
+                id="UTTAR PARDESH"
+                className={`btn ${state === upStateId ? "active" : ""}`}
+                onClick={() => handleStateClick(upStateId)}
+              >
+                UTTAR PRADESH
+              </button>
+              <button
+                key="PUNJAB"
+                id="PUNJAB"
+                className={`btn ${state === punjabStateId ? "active" : ""}`}
+                onClick={() => handleStateClick(punjabStateId)}
+              >
+                PUNJAB
+              </button>
+              <button
+                id="UTTRAKHAND"
+                key="UTTRAKHAND"
+                className={`btn ${state === uttrakhandStateId ? "active" : ""}`}
+                onClick={() => handleStateClick(uttrakhandStateId)}
+              >
+                UTTRAKHAND
+              </button>
+              <button
+                id="GOA"
+                key="GOA"
+                className={`btn ${state === goaStateId ? "active" : ""}`}
+                onClick={() => handleStateClick(goaStateId)}
+              >
+                GOA
+              </button>
+              <button
+                id="MANIPUR"
+                key="MANIPUR"
+                className={`btn ${state === manipurStateId ? "active" : ""}`}
+                onClick={() => handleStateClick(manipurStateId)}
+              >
+                MANIPUR
+              </button>
+            </div>
 
-          <div className="row2">
-            {state === punjabStateId &&
-              createMapSvg("0 0 600 600", ArrMap, punjabStateId)}
-            {state === upStateId &&
-              createMapSvg("80 140 950 950", UpArrMap, upStateId)}
-            {state === uttrakhandStateId &&
-              createMapSvg(
-                "100 150 900 900",
-                UttrakhandArrMap,
-                uttrakhandStateId
-              )}
-            {state === goaStateId &&
-              createMapSvg("50 60 650 650", GoaArrMap, goaStateId)}
-            {state === manipurStateId &&
-              createMapSvg("100 140 800 800", ManipurArrMap, manipurStateId)}
-            <div className="firstWidget">
-              <div className="firstWidgetContainer">
-                <ConstituencyList
-                  dropDownList={data}
-                  onYearChange={onYearChange}
-                  onSelectCalled={onSelectCalled}
-                />
-                {
-                  <div className="secondWidget">
-                    <PieChartCompo pieChartData={pieData} totalConstituency = {constituencyRatio}  />
-                  </div>
-                }
+            <div className="row2">
+              {state === punjabStateId &&
+                createMapSvg("0 0 600 600", ArrMap, punjabStateId)}
+              {state === upStateId &&
+                createMapSvg("80 140 950 950", UpArrMap, upStateId)}
+              {state === uttrakhandStateId &&
+                createMapSvg(
+                  "100 150 900 900",
+                  UttrakhandArrMap,
+                  uttrakhandStateId
+                )}
+              {state === goaStateId &&
+                createMapSvg("50 60 650 650", GoaArrMap, goaStateId)}
+              {state === manipurStateId &&
+                createMapSvg("100 140 800 800", ManipurArrMap, manipurStateId)}
+              <div className="firstWidget">
+                <div className="firstWidgetContainer">
+                  <ConstituencyList
+                    dropDownList={data}
+                    onYearChange={onYearChange}
+                    onSelectCalled={onSelectCalled}
+                  />
+                  {
+                    <div className="secondWidget">
+                      <PieChartCompo
+                        pieChartData={pieData}
+                        totalConstituency={constituencyRatio}
+                      />
+                    </div>
+                  }
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      )}
+          </>
+        )}
+      </div>
     </div>
   );
 }

@@ -30,35 +30,38 @@ function InfoPage(props) {
   }, []);
 
   const getCordinates = (points) => {
-    const a = points.split(' ').filter(p => p);
-    return a.map(str => {
-      const [x, y] = str.split(',');
-      return ({ x: Number(x), y: Number(y) })
+    const a = points.split(" ").filter((p) => p);
+    return a.map((str) => {
+      const [x, y] = str.split(",");
+      return { x: Number(x), y: Number(y) };
     });
-  }
+  };
   const getExtremes = (points) => {
     const cordinates = getCordinates(points);
-    const xPoints = cordinates.map(c => c.x);
-    const yPoints = cordinates.map(c => c.y);
+    const xPoints = cordinates.map((c) => c.x);
+    const yPoints = cordinates.map((c) => c.y);
     const xMin = Math.min(...xPoints);
     const yMin = Math.min(...yPoints);
     const xMax = Math.max(...xPoints);
     const yMax = Math.max(...yPoints);
-    return ({ xMin, yMin, xMax, yMax });
-  }
+    return { xMin, yMin, xMax, yMax };
+  };
 
   const getBoundingBox = (points) => {
     // if (!points) return;
     const { xMin, yMin, xMax, yMax } = getExtremes(points);
     return `0 0 ${xMax - xMin} ${yMax - yMin}`;
-  }
+  };
 
   const normalize = (points) => {
     const { xMin, yMin } = getExtremes(points);
     const cordinates = getCordinates(points);
-    const normalised = cordinates.map(c => ({ x: c.x - xMin, y: c.y - yMin }));
-    return normalised.reduce((a, c) => a + `${c.x},${c.y} `, '');
-  }
+    const normalised = cordinates.map((c) => ({
+      x: c.x - xMin,
+      y: c.y - yMin,
+    }));
+    return normalised.reduce((a, c) => a + `${c.x},${c.y} `, "");
+  };
 
   const getPointsData = () => {
     let pointsData;
@@ -143,191 +146,202 @@ function InfoPage(props) {
     },
   ];
 
-  const m = Math.ceil(65/10);
-  // const percent = 55*0.3;
-  // const female = (35 % 10);
-  const female = (35 % 10);
-  const womenPercent = female*10/2;
-  const maleViewbox = -womenPercent+ " 0 55 95";
-  const femaleViewbox = 50-womenPercent+ " 0 55 95";
-  // const m= Math.floor(33/10);
-  // const f= Math.floor(77/10);
-  // const v = 50-womenPercent+ " 0 "+ percent+ "95"
+  const malePercent = 25;
+  const femalePercent = 75;
+
+  const maleLoop = Math.ceil(malePercent / 10);
+  const femaleLoop = Math.ceil(femalePercent / 10);
+
+  const lastPercent = (malePercent % 10) / 10;
+  const firstPercent = (femalePercent % 10) / 10;
+
+  const maleWidth = 55 * lastPercent;
+  const femaleWidth = 55 * firstPercent;
+
+  const maleViewbox = "0 0 " + maleWidth + " 95";
+  const femaleViewbox = 55 - femaleWidth + " 0 " + femaleWidth + " 95";
+
   return (
     <div>
       <div className="backToMap" onClick={() => props.handleBackClick()}>
-        {" "}
-        <img src={chevronLeftIcon} alt="back arrow"></img> back to map{" "}
+        <div>
+          <img src={chevronLeftIcon} alt="back arrow"></img>
+        </div>
+        <div> back to map</div>
       </div>
 
       <div className="gridContainer">
         <div className="gridItem item1">
           <div className="scaling-svg-container">
-            {pointsData?.points && (<svg
-            version="1.1"
-            // height="350"  
-            // width="350"
-            viewBox={getBoundingBox(pointsData?.points)}
-            width="100%"
-            height="100%"
-            className="scaling-svg"
-          >
-             <g data-tip data-for="singleBox">
-                <polygon
-                  dataname={pointsData.name}
-                  className={pointsData.class}
-                  fill={data.color}
-                  points={normalize(pointsData?.points)}
-                  stroke = "#ffffff"
-                  stroke-width= "0.5"
-                />
-              </g>
-            </svg>)}
-          </div>
-        </div>
-        <div className="gridItem item2">
-          <h1 className="constName"> {data.name}</h1>{" "}  
-        </div>
-        <div className="gridItem item3">
-          <h5 classname="headingItem3">ELECTORS</h5>{" "}
-           {data.total_voters}{" "}
-        </div>
-        <div className="gridItem item4">
-          <div>
-            <h5 className="putInLeft">
-              VOTER TURN OUT : {" "}
-              <em className="largeText">{data.voterturnout}</em>
-            </h5>
-          </div>
-          <div className="iconBox">
-          {[...Array(m)].map((e, i) => (
-            <span className="male_female" key={i}>
-              {i !== m - 1 ? (
-                <g>
-                <svg
-                  width="55"
-                  height="95"
-                  viewBox="0 0 55 95"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d={maleSvg.d} fill={maleSvg.fill} />
-                </svg>
-                </g>
-              ) : (
-                <g>
-                <svg
-                  width="55"
-                  height="95"
-                  viewBox={maleViewbox}
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d={maleSvg.d} fill={maleSvg.fill} />
-                </svg>
-                </g>
-              )}
-            </span>
-          ))}
-          {[...Array(female)].map((e, i) => (
-            <span className="male_female" key={i}>
-               {i ===  0 ? (
-                 <g>
+            {pointsData?.points && (
               <svg
-                width="55"
-                height="95"
-                viewBox={femaleViewbox}
-                // fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+                version="1.1"
+                viewBox={getBoundingBox(pointsData?.points)}
+                width="100%"
+                height="100%"
+                className="scaling-svg"
               >
-                <path d={femaleSvg.d} fill={femaleSvg.fill} />
+                <g data-tip data-for="singleBox">
+                  <polygon
+                    dataname={pointsData.name}
+                    className={pointsData.class}
+                    fill={data.color}
+                    points={normalize(pointsData?.points)}
+                    stroke="#ffffff"
+                    strokeWidth="0.5"
+                  />
+                </g>
               </svg>
-              </g>
-               ) : (
-                 <g>
-                <svg
-                width="55"
-                height="95"
-                viewBox="0 0 55 95"
-                // fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d={femaleSvg.d} fill={femaleSvg.fill} />
-              </svg>
-              </g>
-              )}
-            </span>
-          ))}
+            )}
           </div>
-          {/* <div id="inBottom"> */}
-            <div className="percentageGap">
-              <div>
-                <h5 className="menHeading">MEN ( {data.male}% )</h5>
-              </div>
-              <div>
-                <h5 className="womenHeading">WOMEN ( {data.female}% )</h5>
-              </div>
-            </div>
-          {/* </div> */}
-        </div>
-        <div className=" item5">
+
           <div className="graph">
             <BarChart
-              width={230} 
-              height={270}
+              width={230}
+              height={300}
               data={barData}
               barCategoryGap={19}
-              margin={{
-                // top: 20,
-                // right: 30,
-                left: 30,
-                bottom: 5,
-              }}
             >
               <XAxis dataKey="name" />
               <YAxis />
               <Tooltip />
               <Legend />
-              <Bar dataKey="BJP" stackId="a" fill="#F97D09" />
-              <Bar dataKey="SP" stackId="a" fill="#006D02" />
-              <Bar dataKey="INC" stackId="a" fill="#00ffff" />
+
+              <Bar dataKey="BJP" stackId="1" fill="#F97D09" />
+              <Bar dataKey="SP" stackId="1" fill="#006D02" />
+              <Bar dataKey="INC" stackId="1" fill="#00ffff" />
             </BarChart>
           </div>
         </div>
-        <div className="gridItem item6">
-          <div className="winnerPic">
-            <img className="winnerImg" src={data.photo} alt="winner" />
-            <div className="detail">
-              <h4>{data.mla}</h4>
-              <h5>{data.votes}&nbsp;&nbsp;Votes</h5>
-              <div className="bottomDetails">
-                <h6 className="won">WON</h6>
-                <h6 className="winnerBottomRight">&nbsp;{data.party_code}</h6>
-                <h6 className="winnerBottomRight">
-                  <img src={data.logo} alt="winner logo" height="25"></img>
-                </h6>
+        <div className="gridItem item2">
+          <div className="item3">
+            <h1 className="constName"> {data.name}</h1>{" "}
+          </div>
+
+          <div className="item4">
+            <div className="item4_1">
+              <h5 className="headingItem3">ELECTORS</h5> {data.total_voters}{" "}
+            </div>
+
+            <div className="item4_2">
+              <h5 className="putInLeft">
+                VOTER TURN OUT :{" "}
+                <em className="largeText">{data.voterturnout}</em>
+              </h5>
+              <div className="iconBox">
+                {[...Array(maleLoop)].map((e, i) => (
+                  <span className="male_female" key={i}>
+                    {i !== maleLoop - 1 ? (
+                      <svg
+                        width="55"
+                        height="95"
+                        viewBox="0 0 55 95"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g>
+                          <path d={maleSvg.d} fill={maleSvg.fill} />
+                        </g>
+                      </svg>
+                    ) : (
+                      <svg
+                        width={maleWidth}
+                        height="95"
+                        viewBox={maleViewbox}
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g>
+                          <path d={maleSvg.d} fill={maleSvg.fill} />
+                        </g>
+                      </svg>
+                    )}
+                  </span>
+                ))}
+                {[...Array(femaleLoop)].map((e, i) => (
+                  <span className="male_female" key={i}>
+                    {i === 0 ? (
+                      <svg
+                        width={femaleWidth}
+                        height="95"
+                        viewBox={femaleViewbox}
+                        // fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g>
+                          <path d={femaleSvg.d} fill={femaleSvg.fill} />
+                        </g>
+                      </svg>
+                    ) : (
+                      <svg
+                        width="55"
+                        height="95"
+                        viewBox="0 0 55 95"
+                        // fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g>
+                          <path d={femaleSvg.d} fill={femaleSvg.fill} />
+                        </g>
+                      </svg>
+                    )}
+                  </span>
+                ))}
+              </div>
+              <div className="percentageGap">
+                <div>
+                  <h5 className="menHeading">MEN ( {malePercent}% )</h5>
+                </div>
+                <div>
+                  <h5 className="womenHeading">WOMEN ( {femalePercent}% )</h5>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="gridItem item7">
-          <div className="winnerPic">
-            <img className="winnerImg" src={data.runnerup_photo} alt="firstRunnerup" />
-            <div className="detail">
-              <h4>{data.runnerup_name}</h4>
-              <h5>{data.runnerup_votes}&nbsp;&nbsp;Votes</h5>
-              <div className="bottomDetails">
-                <h6 className="lost">LOST</h6>
-                <h6 className="winnerBottomRight">
-                  &nbsp;{data.runnerup_party_code}
-                </h6>
-                <h6 className="winnerBottomRight">
-                  <img
-                    src={data.runnerup_logo}
-                    alt="runnerup logo"
-                    height="25"
-                  ></img>
-                </h6>
+
+          <div className="item5">
+            <div className="item5_1">
+              <div className="winnerPic">
+                <img className="winnerImg" src={data.photo} alt="winner" />
+                <div className="detail">
+                  <h4>{data.mla}</h4>
+                  <h5>{data.votes}&nbsp;&nbsp;Votes</h5>
+                  <div className="bottomDetails">
+                    <h6 className="won">WON</h6>
+                    <h6 className="winnerBottomRight">
+                      &nbsp;{data.party_code}
+                    </h6>
+                    <h6 className="winnerBottomRight">
+                      <img src={data.logo} alt="winner logo" height="25"></img>
+                    </h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="item5_2">
+              <div className="winnerPic">
+                <img
+                  className="winnerImg"
+                  src={data.runnerup_photo}
+                  alt="firstRunnerup"
+                />
+                <div className="detail">
+                  <h4>{data.runnerup_name}</h4>
+                  <h5>{data.runnerup_votes}&nbsp;&nbsp;Votes</h5>
+                  <div className="bottomDetails">
+                    <h6 className="lost">LOST</h6>
+                    <h6 className="winnerBottomRight">
+                      &nbsp;{data.runnerup_party_code}
+                    </h6>
+                    <h6 className="winnerBottomRight">
+                      <img
+                        src={data.runnerup_logo}
+                        alt="runnerup logo"
+                        height="25"
+                      ></img>
+                    </h6>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
