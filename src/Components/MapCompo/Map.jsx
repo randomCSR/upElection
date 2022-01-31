@@ -1,7 +1,7 @@
 import React from "react";
 
 function Map(props) {
-  const id = props.id;
+  // const id = props.id;
   const color = props.apiData[0] ? props.apiData[0].color : "";
 
   function getId(e) {

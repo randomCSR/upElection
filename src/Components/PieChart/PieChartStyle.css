@@ -1,11 +1,22 @@
 .ratioComponent {
   text-align: center;
   color: white;
-  margin-bottom: 2rem;
+  font-weight: bold;
+  margin-bottom: 0rem;
+  border-radius:5px;
+  padding :5px 10px;
+  margin-left:155px;
+  background-color:#292828;
+}
+.targetComponent{
+  margin: 10px;
+  text-align: center;
+  color: white;
+  /* margin-bottom: 10px; */
 }
 .pieChartClass {
-  width: 90%;
-  margin: auto;
+  width: 100%;
+  /* margin: auto; */
 }
 .tableWrapper {
   padding: 0px;
@@ -36,3 +47,6 @@
   padding: 6px;
   text-align: center;
 }
+/* .partyNameColumn{
+  text-align: left
+} */

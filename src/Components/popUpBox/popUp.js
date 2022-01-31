@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ReactTooltip from "react-tooltip";
 
 function PopUp({ data }) {
@@ -14,6 +14,7 @@ function PopUp({ data }) {
               color: "white",
               backgroundColor: "#3ac9de",
               padding: "5px 12px",
+              borderRadius:"10px",
             }}
           >
             {data.name}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./InfoStyle.css";
-import photo from "./photo.jpg";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from "recharts";
+import chevronLeftIcon from "./Icons/chevron-left.svg";
 import {
   ArrMap,
   GoaArrMap,
@@ -28,6 +28,37 @@ function InfoPage(props) {
     getConstituencyDetails("en");
     getPointsData();
   }, []);
+
+  const getCordinates = (points) => {
+    const a = points.split(' ').filter(p => p);
+    return a.map(str => {
+      const [x, y] = str.split(',');
+      return ({ x: Number(x), y: Number(y) })
+    });
+  }
+  const getExtremes = (points) => {
+    const cordinates = getCordinates(points);
+    const xPoints = cordinates.map(c => c.x);
+    const yPoints = cordinates.map(c => c.y);
+    const xMin = Math.min(...xPoints);
+    const yMin = Math.min(...yPoints);
+    const xMax = Math.max(...xPoints);
+    const yMax = Math.max(...yPoints);
+    return ({ xMin, yMin, xMax, yMax });
+  }
+
+  const getBoundingBox = (points) => {
+    // if (!points) return;
+    const { xMin, yMin, xMax, yMax } = getExtremes(points);
+    return `0 0 ${xMax - xMin} ${yMax - yMin}`;
+  }
+
+  const normalize = (points) => {
+    const { xMin, yMin } = getExtremes(points);
+    const cordinates = getCordinates(points);
+    const normalised = cordinates.map(c => ({ x: c.x - xMin, y: c.y - yMin }));
+    return normalised.reduce((a, c) => a + `${c.x},${c.y} `, '');
+  }
 
   const getPointsData = () => {
     let pointsData;
@@ -96,139 +127,156 @@ function InfoPage(props) {
   };
 
   const barData = [
-    {
-      name: "2012",
-      BJP: data.votes,
-      SP: data.runnerup_votes,
-      INC: 30000,
-      amt: 24000,
-    },
+    // {
+    //   name: "2012",
+    //   BJP: "no data",
+    //   SP: "no data",
+    //   INC: "no data",
+    //   amt: 24000,
+    // },
     {
       name: "2017",
-      BJP: 30000,
-      SP: 13098,
-      INC: 23000,
+      BJP: data.votes,
+      SP: data.runnerup_votes,
+      INC: "NULL",
       amt: 2200,
     },
   ];
 
-  const m = 3;
-  const f = 7;
-  const percent = 46 * 0.3;
-  console.log(percent);
-  const v = "0 0 " + percent + " 86";
+  const m = Math.ceil(65/10);
+  // const percent = 55*0.3;
+  // const female = (35 % 10);
+  const female = (35 % 10);
+  const womenPercent = female*10/2;
+  const maleViewbox = -womenPercent+ " 0 55 95";
+  const femaleViewbox = 50-womenPercent+ " 0 55 95";
+  // const m= Math.floor(33/10);
+  // const f= Math.floor(77/10);
+  // const v = 50-womenPercent+ " 0 "+ percent+ "95"
   return (
     <div>
       <div className="backToMap" onClick={() => props.handleBackClick()}>
         {" "}
-        &lt; back to map{" "}
+        <img src={chevronLeftIcon} alt="back arrow"></img> back to map{" "}
       </div>
 
       <div className="gridContainer">
         <div className="gridItem item1">
           <div className="scaling-svg-container">
-            <svg
-              version="1.1"
-              viewBox="80 140 950 950"
-              width="100%"
-              height="100%"
-              className="scaling-svg"
-            >
-              {pointsData ? (
-                pointsData.points === undefined ? (
-                  <g data-tip data-for="singleBox">
-                    <path
-                      dataname={pointsData.cnsName}
-                      className={pointsData.class}
-                      fill="red"
-                      d={pointsData.dd}
-                    />
-                  </g>
-                ) : (
-                  <g data-tip data-for="singleBox">
-                    <polygon
-                      dataname={pointsData.name}
-                      className={pointsData.class}
-                      fill="red"
-                      points={pointsData.points}
-                    />
-                  </g>
-                )
-              ) : (
-                ""
-              )}
-            </svg>
+            {pointsData?.points && (<svg
+            version="1.1"
+            // height="350"  
+            // width="350"
+            viewBox={getBoundingBox(pointsData?.points)}
+            width="100%"
+            height="100%"
+            className="scaling-svg"
+          >
+             <g data-tip data-for="singleBox">
+                <polygon
+                  dataname={pointsData.name}
+                  className={pointsData.class}
+                  fill={data.color}
+                  points={normalize(pointsData?.points)}
+                  stroke = "#ffffff"
+                  stroke-width= "0.5"
+                />
+              </g>
+            </svg>)}
           </div>
         </div>
         <div className="gridItem item2">
-          <h1 className="constName"> {data.name}</h1>{" "}
+          <h1 className="constName"> {data.name}</h1>{" "}  
         </div>
         <div className="gridItem item3">
-          <h5> ELECTORS </h5> {data.total_voters}2673652{" "}
+          <h5 classname="headingItem3">ELECTORS</h5>{" "}
+           {data.total_voters}{" "}
         </div>
         <div className="gridItem item4">
           <div>
             <h5 className="putInLeft">
-              VOTER TURN OUT :{" "}
-              <em className="largeText">{data.voterturnout}6767</em>
+              VOTER TURN OUT : {" "}
+              <em className="largeText">{data.voterturnout}</em>
             </h5>
           </div>
+          <div className="iconBox">
           {[...Array(m)].map((e, i) => (
             <span className="male_female" key={i}>
               {i !== m - 1 ? (
+                <g>
                 <svg
-                  width="46"
-                  height="86"
-                  viewBox="0 0 46 86"
+                  width="55"
+                  height="95"
+                  viewBox="0 0 55 95"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path d={maleSvg.d} fill={maleSvg.fill} />
                 </svg>
+                </g>
               ) : (
+                <g>
                 <svg
-                  width={percent}
-                  height="86"
-                  viewBox={v}
+                  width="55"
+                  height="95"
+                  viewBox={maleViewbox}
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path d={maleSvg.d} fill={maleSvg.fill} />
                 </svg>
+                </g>
               )}
             </span>
           ))}
-          {[...Array(f)].map((e, i) => (
+          {[...Array(female)].map((e, i) => (
             <span className="male_female" key={i}>
+               {i ===  0 ? (
+                 <g>
               <svg
-                width="46"
-                height="86"
-                viewBox="0 0 46 86"
-                fill="none"
+                width="55"
+                height="95"
+                viewBox={femaleViewbox}
+                // fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path d={femaleSvg.d} fill={femaleSvg.fill} />
               </svg>
+              </g>
+               ) : (
+                 <g>
+                <svg
+                width="55"
+                height="95"
+                viewBox="0 0 55 95"
+                // fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d={femaleSvg.d} fill={femaleSvg.fill} />
+              </svg>
+              </g>
+              )}
             </span>
           ))}
-          <div id="inBottom">
+          </div>
+          {/* <div id="inBottom"> */}
             <div className="percentageGap">
               <div>
-                <h5>MEN ( {data.male}55% )&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                <h5 className="menHeading">MEN ( {data.male}% )</h5>
               </div>
               <div>
-                <h5>WOMEN ( {data.female}45% )</h5>
+                <h5 className="womenHeading">WOMEN ( {data.female}% )</h5>
               </div>
             </div>
-          </div>
+          {/* </div> */}
         </div>
         <div className=" item5">
           <div className="graph">
             <BarChart
-              width={330}
-              height={300}
+              width={230} 
+              height={270}
               data={barData}
-              barCategoryGap={15}
+              barCategoryGap={19}
               margin={{
                 // top: 20,
                 // right: 30,
@@ -248,7 +296,7 @@ function InfoPage(props) {
         </div>
         <div className="gridItem item6">
           <div className="winnerPic">
-            <img className="winnerImg" src={photo} alt="winner" />
+            <img className="winnerImg" src={data.photo} alt="winner" />
             <div className="detail">
               <h4>{data.mla}</h4>
               <h5>{data.votes}&nbsp;&nbsp;Votes</h5>
@@ -264,7 +312,7 @@ function InfoPage(props) {
         </div>
         <div className="gridItem item7">
           <div className="winnerPic">
-            <img className="winnerImg" src={photo} alt="firstRunnerup" />
+            <img className="winnerImg" src={data.runnerup_photo} alt="firstRunnerup" />
             <div className="detail">
               <h4>{data.runnerup_name}</h4>
               <h5>{data.runnerup_votes}&nbsp;&nbsp;Votes</h5>

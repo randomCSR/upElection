@@ -27,6 +27,7 @@ function App() {
   const [data, setData] = useState([]);
   const [popUpData, setPopUpData] = useState();
   const [pieData, setPieData] = useState();
+  const [constituencyRatio, setconstituencyRatio] = useState();
   const [selectedYear, setSelectedYear] = useState("2017");
   const [id, setId] = useState();
   const [isShowInfo, setShowInfo] = useState(false);
@@ -54,10 +55,11 @@ function App() {
           headers,
         }
       );
-      const { response, piechart } = await res.json();
+      const { response, piechart, constituencyCount } = await res.json();
       console.log("MapData: ", response);
       setData(response);
       setPieData(piechart);
+      setconstituencyRatio(constituencyCount)
       return {};
     } catch (error) {
       return Promise.reject(error);
@@ -68,6 +70,7 @@ function App() {
     console.log(data);
     setPopUpData(data);
   };
+ 
   function createMap(cnsTerms) {
     return (
       <Map
@@ -110,7 +113,7 @@ function App() {
   };
 
   const handleStateClick = (state_id) => {
-    console.log("StateID: ", state_id);
+    // console.log("StateID: ", state_id);
     setState(state_id);
   };
 
@@ -122,10 +125,15 @@ function App() {
   const handleBackClick = () => {
     setShowInfo(false);
   };
-
+  const onSelectCalled = (data) => {
+    console.log(data);  
+    setId(data.id);
+    setShowInfo(true);
+  };
+  console.log(state)
   return (
     <div className="App">
-      {isShowInfo ? (
+      {isShowInfo? (
         <InfoPage
           id={id}
           selectedYear={selectedYear}
@@ -141,7 +149,7 @@ function App() {
               className={`btn ${state === upStateId ? "active" : ""}`}
               onClick={() => handleStateClick(upStateId)}
             >
-              UTTAR PARDESH
+              UTTAR PRADESH
             </button>
             <button
               key="PUNJAB"
@@ -197,11 +205,11 @@ function App() {
                 <ConstituencyList
                   dropDownList={data}
                   onYearChange={onYearChange}
-                  onHoverCalled={onHoverCalled}
+                  onSelectCalled={onSelectCalled}
                 />
                 {
                   <div className="secondWidget">
-                    <PieChartCompo pieChartData={pieData} />
+                    <PieChartCompo pieChartData={pieData} totalConstituency = {constituencyRatio}  />
                   </div>
                 }
               </div>

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import "./ConstituencyListStyle.css";
 
-function ConstituencyList({ dropDownList, onYearChange, onHoverCalled }) {
+function ConstituencyList({ dropDownList, onYearChange, onSelectCalled }) {
   const [items, setItems] = useState("starting");
-  const [year, setYear] = useState("2017");
+  // const [year, setYear] = useState("2017");
 
   const handleYearChange = (e) => {
-    setYear(e.target.value);
+    // setYear(e.target.value);
     onYearChange(e.target.value);
   };
 
@@ -21,7 +21,7 @@ function ConstituencyList({ dropDownList, onYearChange, onHoverCalled }) {
             name="year"
             id="2022"
             onChange={handleYearChange}
-          />
+          />  
           2022 Election
         </div>
         <div className="rb">
@@ -37,7 +37,7 @@ function ConstituencyList({ dropDownList, onYearChange, onHoverCalled }) {
           2017 Election
         </div>
 
-        <div className="rb">
+        {/* <div className="rb">
           <input
             key="3"
             type="radio"
@@ -47,7 +47,7 @@ function ConstituencyList({ dropDownList, onYearChange, onHoverCalled }) {
             onChange={handleYearChange}
           />
           2012 Election
-        </div>
+        </div> */}
       </div>
 
       <select
@@ -59,7 +59,8 @@ function ConstituencyList({ dropDownList, onYearChange, onHoverCalled }) {
           const popUpData = dropDownList.filter(
             (v) => v.constituency_no.toString() === e.target.value.toString()
           );
-          onHoverCalled(popUpData[0]);
+          // console.log(popUpData[0]);
+          onSelectCalled(popUpData[0]);
         }}
       >
         {dropDownList.map((data) => (
