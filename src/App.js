@@ -36,7 +36,7 @@ function App() {
   }, [state, selectedYear]);
 
   const getConstituencyData = async (lang = "en") => {
-    console.log("year: ", selectedYear, "id: ", state);
+    console.log("year: ", selectedYear, "id: ", state); 
     const body = new URLSearchParams();
     body.append("state_id", state);
     body.append("year", selectedYear);
@@ -64,11 +64,6 @@ function App() {
     } catch (error) {
       return Promise.reject(error);
     }
-  };
-
-  const onHoverCalled = (data) => {
-    console.log(data);
-    setPopUpData(data);
   };
 
   function createMap(cnsTerms) {
@@ -107,9 +102,15 @@ function App() {
       </div>
     );
   }
+
+  const onHoverCalled = (data) => {
+    console.log(data);
+    setPopUpData(data);
+  };
+
   const onYearChange = (data) => {
     setSelectedYear(data);
-    console.log("YearData", data);
+    // console.log("YearData", data);
   };
 
   const handleStateClick = (state_id) => {
@@ -118,19 +119,19 @@ function App() {
   };
 
   const handleIdClick = (id) => {
-    console.log("Click: ", id);
+    // console.log("Click: ", id);
     setId(id);
     setShowInfo(true);
   };
   const handleBackClick = () => {
-    setShowInfo(false);
+    setShowInfo(false); 
   };
   const onSelectCalled = (data) => {
-    console.log(data);
+    // console.log(data);
     setId(data.id);
     setShowInfo(true);
   };
-  console.log(state);
+  // console.log(state);
   return (
     <div className="App">
       <div className="container">

@@ -139,19 +139,26 @@ function InfoPage(props) {
     // },
     {
       name: "2017",
-      BJP: data.votes,
-      SP: data.runnerup_votes,
-      INC: "NULL",
+      Winner: data.votes,
+      Runnerup: data.runnerup_votes,
+      Others: "NULL",
       amt: 2200,
     },
   ];
 
-  const malePercent = 25;
-  const femalePercent = 75;
 
+  const realMalePercent = 85;
+  const realFemalePercent =15;
+  let malePercent = 85;
+  let femalePercent = 15;
+
+  if(malePercent % 10 === 0){
+    malePercent = malePercent+10;
+    femalePercent = femalePercent+10;
+  }
   const maleLoop = Math.ceil(malePercent / 10);
   const femaleLoop = Math.ceil(femalePercent / 10);
-
+ 
   const lastPercent = (malePercent % 10) / 10;
   const firstPercent = (femalePercent % 10) / 10;
 
@@ -207,9 +214,9 @@ function InfoPage(props) {
               <Tooltip />
               <Legend />
 
-              <Bar dataKey="BJP" stackId="1" fill="#F97D09" />
-              <Bar dataKey="SP" stackId="1" fill="#006D02" />
-              <Bar dataKey="INC" stackId="1" fill="#00ffff" />
+              <Bar dataKey="Winner" stackId="1" fill="#00FFFF" />
+              <Bar dataKey="Runnerup" stackId="1" fill="#4a86e6" />
+              {/* <Bar dataKey="Others" stackId="1" fill="#0766fb" /> */}
             </BarChart>
           </div>
         </div>
@@ -290,10 +297,10 @@ function InfoPage(props) {
               </div>
               <div className="percentageGap">
                 <div>
-                  <h5 className="menHeading">MEN ( {malePercent}% )</h5>
+                  <h5 className="menHeading">MEN ( {realMalePercent}% )</h5>
                 </div>
                 <div>
-                  <h5 className="womenHeading">WOMEN ( {femalePercent}% )</h5>
+                  <h5 className="womenHeading">WOMEN ( {realFemalePercent}% )</h5>
                 </div>
               </div>
             </div>
@@ -323,7 +330,7 @@ function InfoPage(props) {
                 <img
                   className="winnerImg"
                   src={data.runnerup_photo}
-                  alt="firstRunnerup"
+                  alt="Runnerup"
                 />
                 <div className="detail">
                   <h4>{data.runnerup_name}</h4>

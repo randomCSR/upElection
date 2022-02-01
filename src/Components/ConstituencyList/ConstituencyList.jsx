@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./ConstituencyListStyle.css";
 
 function ConstituencyList({ dropDownList, onYearChange, onSelectCalled }) {
-  const [items, setItems] = useState("starting");
+  const [items, setItems] = useState();
   // const [year, setYear] = useState("2017");
 
   const handleYearChange = (e) => {
@@ -55,6 +55,7 @@ function ConstituencyList({ dropDownList, onYearChange, onSelectCalled }) {
         value={items}
         onChange={(e) => {
           const selectedName = e.target.value;
+          
           setItems(selectedName);
           const popUpData = dropDownList.filter(
             (v) => v.constituency_no.toString() === e.target.value.toString()
