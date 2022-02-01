@@ -146,21 +146,18 @@ function InfoPage(props) {
     },
   ];
 
+  const malePercent = 80;
+  const femalePercent = 20;
 
-  const realMalePercent = 85;
-  const realFemalePercent =15;
-  let malePercent = 85;
-  let femalePercent = 15;
-
-  if(malePercent % 10 === 0){
-    malePercent = malePercent+10;
-    femalePercent = femalePercent+10;
-  }
+  // if(malePercent % 10 === 0){
+  //   malePercent = malePercent+10;
+  //   femalePercent = femalePercent+10;
+  // }
   const maleLoop = Math.ceil(malePercent / 10);
   const femaleLoop = Math.ceil(femalePercent / 10);
- 
-  const lastPercent = (malePercent % 10) / 10;
-  const firstPercent = (femalePercent % 10) / 10;
+
+  const lastPercent = malePercent % 10 !== 0 ? (malePercent % 10) / 10 : 1;
+  const firstPercent = femalePercent % 10 !== 0 ? (femalePercent % 10) / 10 : 1;
 
   const maleWidth = 55 * lastPercent;
   const femaleWidth = 55 * firstPercent;
@@ -205,7 +202,7 @@ function InfoPage(props) {
           <div className="graph">
             <BarChart
               width={230}
-              height={300}
+              height={270}
               data={barData}
               barCategoryGap={19}
             >
@@ -297,10 +294,10 @@ function InfoPage(props) {
               </div>
               <div className="percentageGap">
                 <div>
-                  <h5 className="menHeading">MEN ( {realMalePercent}% )</h5>
+                  <h5 className="menHeading">MEN ( {malePercent}% )</h5>
                 </div>
                 <div>
-                  <h5 className="womenHeading">WOMEN ( {realFemalePercent}% )</h5>
+                  <h5 className="womenHeading">WOMEN ( {femalePercent}% )</h5>
                 </div>
               </div>
             </div>
@@ -315,12 +312,20 @@ function InfoPage(props) {
                   <h5>{data.votes}&nbsp;&nbsp;Votes</h5>
                   <div className="bottomDetails">
                     <h6 className="won">WON</h6>
-                    <h6 className="winnerBottomRight">
-                      &nbsp;{data.party_code}
-                    </h6>
-                    <h6 className="winnerBottomRight">
-                      <img src={data.logo} alt="winner logo" height="25"></img>
-                    </h6>
+                    <div className="winnerBottomRight">
+                      <div>
+                        <h6>
+                          <img
+                            src={data.logo}
+                            alt="winner logo"
+                            height="25"
+                          ></img>
+                        </h6>
+                      </div>
+                      <div>
+                        <h6>{data.party_code}</h6>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -337,16 +342,20 @@ function InfoPage(props) {
                   <h5>{data.runnerup_votes}&nbsp;&nbsp;Votes</h5>
                   <div className="bottomDetails">
                     <h6 className="lost">LOST</h6>
-                    <h6 className="winnerBottomRight">
-                      &nbsp;{data.runnerup_party_code}
-                    </h6>
-                    <h6 className="winnerBottomRight">
-                      <img
-                        src={data.runnerup_logo}
-                        alt="runnerup logo"
-                        height="25"
-                      ></img>
-                    </h6>
+                    <div className="winnerBottomRight">
+                      <div>
+                        <h6>
+                          <img
+                            src={data.runnerup_logo}
+                            alt="runnerup logo"
+                            height="25"
+                          ></img>
+                        </h6>
+                      </div>
+                      <div>
+                        <h6>{data.runnerup_party_code}</h6>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

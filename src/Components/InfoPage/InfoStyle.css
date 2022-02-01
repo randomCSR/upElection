@@ -11,6 +11,12 @@ body {
   font-size: 20px;
   text-decoration: none;
 }
+
+.backToMap div {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
 .scaling-svg-container {
   position: relative;
   height: 0;
@@ -50,16 +56,13 @@ body {
   font-size: 50px;
   font-weight: bold;
 }
-.item3 {
-  flex: 1;
-}
-.headingItem3{
-  margin-top:60px;
-  letter-spacing:3px;
+
+.headingItem3 {
+  margin-top: 60px;
+  letter-spacing: 3px;
 }
 
 .item4 {
-  flex: 1;
   display: flex;
 }
 .item4_1,
@@ -101,55 +104,70 @@ body {
   text-align: center;
 }
 .item5 {
-  flex: 1;
   display: flex;
 }
 .graph {
   font-size: 13px;
-  margin-top: 5rem;
+  margin-top: 0.2rem;
   align-content: center;
 }
 
 .winnerPic {
   display: flex;
-  border-radius: 100px;
-  float: left;
+  align-content: flex-start;
 }
 .winnerImg {
-  float: left;
-  height: 180px;
-  width: 180px;
-  border-radius: 100px;
+  height: 12rem;
+  width: 12rem;
   padding: 15px;
+  flex: 1;
 }
 .detail {
+  flex: 2;
   color: white;
-  margin-top: 30px;
-  float: left;
-  margin-left: 10px;
+  margin-top: 2rem;
+  margin-left: 1rem;
   text-align: left;
 }
+.bottomDetails {
+  display: flex;
+  margin-top: 2rem;
+}
 .won {
+  flex: 1;
+  align-content: flex-start;
   border-radius: 12px;
   align-items: center;
   display: inline-block;
-  padding: 2px 6px;
+  padding: 0.1rem 0.3rem;
   color: white;
   background-color: rgb(32, 228, 32);
+  max-width: fit-content;
+  height: fit-content;
 }
 
 .winnerBottomRight {
-  float: right;
-  margin-top: 23px;
+  align-content: flex-end;
+  margin-left: 2rem;
+  display: flex;
+  margin-left: auto;
 }
 
+.winnerBottomRight div {
+  width: fit-content;
+  margin-right: 0.4rem;
+}
 .lost {
+  flex: 1;
+  align-content: flex-start;
   border-radius: 12px;
   align-items: center;
   display: inline-block;
-  padding: 2px 8px;
+  padding: 0.1rem 0.3rem;
   color: white;
   background-color: red;
+  max-width: fit-content;
+  height: fit-content;
 }
 .item5_1,
 .item5_2,

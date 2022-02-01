@@ -36,7 +36,7 @@ function App() {
   }, [state, selectedYear]);
 
   const getConstituencyData = async (lang = "en") => {
-    console.log("year: ", selectedYear, "id: ", state); 
+    console.log("year: ", selectedYear, "id: ", state);
     const body = new URLSearchParams();
     body.append("state_id", state);
     body.append("year", selectedYear);
@@ -124,11 +124,11 @@ function App() {
     setShowInfo(true);
   };
   const handleBackClick = () => {
-    setShowInfo(false); 
+    setShowInfo(false);
   };
   const onSelectCalled = (data) => {
     // console.log(data);
-    setId(data.id);
+    setId(data.constituency_no);
     setShowInfo(true);
   };
   // console.log(state);
