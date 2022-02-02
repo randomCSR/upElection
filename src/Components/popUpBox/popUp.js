@@ -12,7 +12,8 @@ function PopUp({ data }) {
             className="toolTipHeading"
             style={{
               color: "white",
-              backgroundColor: "#3ac9de",
+              // backgroundColor: "#3ac9de",
+              backgroundColor: "#2f7ffc",
               padding: "5px 12px",
               borderRadius:"10px",
             }}
@@ -20,7 +21,7 @@ function PopUp({ data }) {
             {data.name}
           </h2>
           <h4>{data.mla}</h4>
-          <h6>{data.party}</h6>
+          <h6 className="partyName">{data.party}</h6>
           <img src={data.logo} alt="party logo" height="30px" />
         </span>
       </ReactTooltip>

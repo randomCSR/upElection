@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./InfoStyle.css";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from "recharts";
+import { BarChart, Bar, XAxis, YAxis,CartesianGrid, Tooltip, Legend } from "recharts";
 import chevronLeftIcon from "./Icons/chevron-left.svg";
 import {
   ArrMap,
@@ -132,27 +132,20 @@ function InfoPage(props) {
   const barData = [
     // {
     //   name: "2012",
-    //   BJP: "no data",
-    //   SP: "no data",
-    //   INC: "no data",
-    //   amt: 24000,
+    //   Winner: 4000,
+    //   Runnerup: 2400,
+    //   amt: 2400
     // },
     {
       name: "2017",
       Winner: data.votes,
       Runnerup: data.runnerup_votes,
-      Others: "NULL",
-      amt: 2200,
     },
   ];
 
-  const malePercent = 80;
-  const femalePercent = 20;
+  const malePercent = 70;
+  const femalePercent =30;
 
-  // if(malePercent % 10 === 0){
-  //   malePercent = malePercent+10;
-  //   femalePercent = femalePercent+10;
-  // }
   const maleLoop = Math.ceil(malePercent / 10);
   const femaleLoop = Math.ceil(femalePercent / 10);
 
@@ -198,23 +191,29 @@ function InfoPage(props) {
               </svg>
             )}
           </div>
-
+        <div className="graphContainer">
           <div className="graph">
-            <BarChart
-              width={230}
-              height={270}
-              data={barData}
-              barCategoryGap={19}
-            >
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-
-              <Bar dataKey="Winner" stackId="1" fill="#00FFFF" />
-              <Bar dataKey="Runnerup" stackId="1" fill="#4a86e6" />
-              {/* <Bar dataKey="Others" stackId="1" fill="#0766fb" /> */}
-            </BarChart>
+                <BarChart
+                  width={200}
+                  height={270}
+                  data={barData}
+                  barCategoryGap={20}
+                  margin={{
+                    top: 20,
+                    // right: 30,
+                    // left: 20,
+                    // bottom: 5
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="0 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="Winner" fill="#00FFFF" />
+                  <Bar dataKey="Runnerup" fill="#4a86e6" />
+                </BarChart>
+          </div>
           </div>
         </div>
         <div className="gridItem item2">
@@ -294,10 +293,10 @@ function InfoPage(props) {
               </div>
               <div className="percentageGap">
                 <div>
-                  <h5 className="menHeading">MEN ( {malePercent}% )</h5>
+                  <h5 className="menHeading">MEN ( {data.male}% )</h5>
                 </div>
                 <div>
-                  <h5 className="womenHeading">WOMEN ( {femalePercent}% )</h5>
+                  <h5 className="womenHeading">WOMEN ( {data.female}% )</h5>
                 </div>
               </div>
             </div>

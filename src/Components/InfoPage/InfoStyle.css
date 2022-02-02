@@ -92,13 +92,7 @@ body {
   margin-top: 15px;
   font-weight: 900px;
   letter-spacing: 2px;
-
-  /* margin-left: 250px; */
 }
-/* .menHeading{
-  font-weight: 900px;
-  letter-spacing:5px;
-} */
 
 .iconBox {
   text-align: center;
@@ -106,10 +100,14 @@ body {
 .item5 {
   display: flex;
 }
+.graphContainer{
+  display: flex;
+  height: 340px;
+  /* border:4px solid white; */
+
+}
 .graph {
   font-size: 13px;
-  margin-top: 0.2rem;
-  align-content: center;
 }
 
 .winnerPic {
