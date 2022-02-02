@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./ConstituencyListStyle.css";
 
-function ConstituencyList({ dropDownList, onYearChange, onSelectCalled }) {
+function ConstituencyList({ dropDownList, onYearChange, onSelectCalled, chosenYear}) {
   const [items, setItems] = useState();
   // const [year, setYear] = useState("2017");
 
@@ -20,6 +20,7 @@ function ConstituencyList({ dropDownList, onYearChange, onSelectCalled }) {
             value="2022"
             name="year"
             id="2022"
+            checked={chosenYear === '2022'}
             onChange={handleYearChange}
           />  
           2022 Election
@@ -30,8 +31,9 @@ function ConstituencyList({ dropDownList, onYearChange, onSelectCalled }) {
             type="radio"
             value="2017"
             name="year"
-            defaultChecked
+            // defaultChecked
             id="2017"
+            checked={chosenYear === '2017'}
             onChange={handleYearChange}
           />
           2017 Election

@@ -19,8 +19,8 @@ import {
   manipurStateId,
 } from "../../utils";
 
-function InfoPage(props) {
-  const id = props.id;
+function InfoPage({ cId, selectedYear, state_id, handleBackClick }) {
+  const id = cId;
   const [data, setData] = useState([]);
   const [pointsData, setPointsData] = useState();
 
@@ -65,7 +65,7 @@ function InfoPage(props) {
 
   const getPointsData = () => {
     let pointsData;
-    switch (props.state_id) {
+    switch (state_id) {
       case upStateId:
         pointsData = UpArrMap.filter(
           (v) => v.dataId.toString() === id.toString()
@@ -102,9 +102,9 @@ function InfoPage(props) {
 
   const getConstituencyDetails = async (lang = "en") => {
     const body = new URLSearchParams();
-    body.append("constituency_no", id);
-    body.append("state_id", props.state_id);
-    body.append("year", props.selectedYear);
+    body.append("constituency_no", cId);
+    body.append("state_id", state_id);
+    body.append("year", selectedYear);
     body.append("lang", lang);
     const headers = {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -160,7 +160,7 @@ function InfoPage(props) {
 
   return (
     <div>
-      <div className="backToMap" onClick={() => props.handleBackClick()}>
+      <div className="backToMap" onClick={() => handleBackClick(data.year)}>
         <div>
           <img src={chevronLeftIcon} alt="back arrow"></img>
         </div>

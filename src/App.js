@@ -112,6 +112,11 @@ function App() {
     setSelectedYear(data);
     // console.log("YearData", data);
   };
+  // const passedYear = (year) => {
+  //   setSelectedYear(year);
+  //   // console.log("YearData", data);
+  // };
+
 
   const handleStateClick = (state_id) => {
     // console.log("StateID: ", state_id);
@@ -123,7 +128,8 @@ function App() {
     setId(id);
     setShowInfo(true);
   };
-  const handleBackClick = () => {
+  const handleBackClick = (year) => {
+    setSelectedYear(year);
     setShowInfo(false);
   };
   const onSelectCalled = (data) => {
@@ -137,7 +143,7 @@ function App() {
       <div className="container">
         {isShowInfo ? (
           <InfoPage
-            id={id}
+            cId={id}
             selectedYear={selectedYear}
             state_id={state}
             handleBackClick={handleBackClick}
@@ -208,6 +214,8 @@ function App() {
                     dropDownList={data}
                     onYearChange={onYearChange}
                     onSelectCalled={onSelectCalled}
+                    chosenYear = {selectedYear}
+
                   />
                   {
                     <div className="secondWidget">
