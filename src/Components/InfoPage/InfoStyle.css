@@ -48,7 +48,7 @@ body {
 .item2 {
   flex: 2.5;
   display: flex;
-  flex-direction: column;
+  flex-direction:column;
   color: white;
   text-align: center;
 }
@@ -102,10 +102,8 @@ body {
 }
 .graphContainer{
   display: flex;
-  height: 340px;
-  /* border:4px solid white; */
-
 }
+
 .graph {
   font-size: 13px;
 }

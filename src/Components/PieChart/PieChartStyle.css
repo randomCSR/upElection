@@ -25,28 +25,31 @@
 }
 .table {
   width: 100%;
+
 }
 
 .tHeading {
   /* width: 100%; */
-  text-align: center;
+  text-align: start;
   font-size: 20px;
-  background-color: rgb(49, 48, 48);
+  background-color: #0766FB;
   color: white;
 }
 .table th {
-  padding: 8px;
+  padding: 10px;
+ 
+}
+.table-head{
+  border-radius:15px; 
 }
 .tBody {
   font-size: 18px;
-  background-color: rgb(243, 165, 119);
-  color: #000000;
+  background-color: #292828;
+  color: white;
   font-weight: bold;
+  border: 1px solid  #848482;
 }
 .tBody td {
   padding: 6px;
-  text-align: center;
+  text-align:start;
 }
-/* .partyNameColumn{
-  text-align: left
-} */

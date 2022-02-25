@@ -141,14 +141,14 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        {isShowInfo ? (
+        {/* {isShowInfo ? ( ""
           <InfoPage
             cId={id}
             selectedYear={selectedYear}
             state_id={state}
             handleBackClick={handleBackClick}
           />
-        ) : (
+        ) : ( */}
           <>
             <div className="stateBtnHeader">
               <button
@@ -229,7 +229,7 @@ function App() {
               </div>
             </div>
           </>
-        )}
+        {/* )} */}
       </div>
     </div>
   );

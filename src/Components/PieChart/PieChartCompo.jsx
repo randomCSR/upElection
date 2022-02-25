@@ -35,7 +35,7 @@ export default function PieChartCompo({ pieChartData, totalConstituency }) {
       <div className="tableWrapper box1">
         <table className="table">
           <thead className="tHeading">
-            <tr>
+            <tr className="table-head">
               <th>Party</th>
               <th>Result</th>
               {/* <th>2012</th> */}
@@ -44,7 +44,9 @@ export default function PieChartCompo({ pieChartData, totalConstituency }) {
 
           <tbody className="tBody" >
             {pieChartData.map((pieChart) => (
-              <tr style={{backgroundColor:pieChart.color}} key={pieChart.party}>
+              <tr 
+              // style={{backgroundColor:pieChart.color}}
+               key={pieChart.party}>
                 <td className="partyNameColumn">{pieChart.party}</td>
                 <td>{pieChart.wins}</td>
                 {/* <td>{pieChart.wins > pieChart.previous_election ? ("+"+pieChart.wins - pieChart.previous_election ): (pieChart.wins - pieChart.previous_election)  }</td> */}

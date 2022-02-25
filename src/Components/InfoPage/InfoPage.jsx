@@ -191,13 +191,14 @@ function InfoPage({ cId, selectedYear, state_id, handleBackClick }) {
               </svg>
             )}
           </div>
+          
         <div className="graphContainer">
           <div className="graph">
                 <BarChart
                   width={200}
                   height={270}
                   data={barData}
-                  barCategoryGap={20}
+                  barCategoryGap={30}
                   margin={{
                     top: 20,
                     // right: 30,
@@ -214,8 +215,8 @@ function InfoPage({ cId, selectedYear, state_id, handleBackClick }) {
                   <Bar dataKey="Runnerup" fill="#4a86e6" />
                 </BarChart>
           </div>
-          </div>
         </div>
+      </div>
         <div className="gridItem item2">
           <div className="item3">
             <h1 className="constName"> {data.name}</h1>{" "}
