@@ -21,7 +21,7 @@ import {
 import Map from "./Components/MapCompo/Map";
 import PopUp from "./Components/popUpBox/popUp";
 import PieChartCompo from "./Components/PieChart/PieChartCompo";
-import InfoPage from "./Components/InfoPage/InfoPage";
+// import InfoPage from "./Components/InfoPage/InfoPage";
 function App() {
   const [state, setState] = useState(upStateId);
   const [data, setData] = useState([]);
@@ -31,12 +31,47 @@ function App() {
   const [selectedYear, setSelectedYear] = useState("2017");
   const [id, setId] = useState();
   const [isShowInfo, setShowInfo] = useState(false);
+  const [electionLead, setElectionLead] = useState([]);
+  const query = new URLSearchParams(window.location.search);
+  const isLive = query.get("isLive") || "false";
+
+  useEffect(() => {
+  getElectionLeads("en");
+}, []);
+
+const getElectionLeads = async (lang = "en") => {
+  const body = new URLSearchParams();
+  body.append("lang", lang);
+  const headers = {
+    "Content-Type": "application/x-www-form-urlencoded",
+    Accept: "application/json",
+  };
+
+  const url = 
+  isLive === "true"
+  ? `https://node-api.editorji.com/elections/election-leads`
+  : `https://stage-api.editorji.com/elections/election-leads`;
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      body,
+      headers,
+    });
+    const { response } = await res.json();
+    setElectionLead(response);
+    return {};
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
+
   useEffect(() => {
     getConstituencyData("en");
   }, [state, selectedYear]);
 
   const getConstituencyData = async (lang = "en") => {
-    console.log("year: ", selectedYear, "id: ", state);
+    // console.log("year: ", selectedYear, "id: ", state);
     const body = new URLSearchParams();
     body.append("state_id", state);
     body.append("year", selectedYear);
@@ -45,10 +80,14 @@ function App() {
       "Content-Type": "application/x-www-form-urlencoded",
       Accept: "application/json",
     };
+    const url =
+    isLive === "true"
+    ? `https://node-api.editorji.com/elections/constituencies`
+    : `https://stage-api.editorji.com/elections/constituencies`;
 
     try {
       const res = await fetch(
-        `https://stage-api.editorji.com/elections/constituencies`,
+        url,
         {
           method: "POST",
           body,
@@ -65,6 +104,8 @@ function App() {
       return Promise.reject(error);
     }
   };
+
+
 
   function createMap(cnsTerms) {
     return (
@@ -220,6 +261,9 @@ function App() {
                   {
                     <div className="secondWidget">
                       <PieChartCompo
+                        year={selectedYear}
+                        stateNumber = {state}
+                        leadData = {electionLead}
                         pieChartData={pieData}
                         totalConstituency={constituencyRatio}
                       />

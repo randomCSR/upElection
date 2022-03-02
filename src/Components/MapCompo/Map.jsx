@@ -22,7 +22,7 @@ function Map(props) {
             id={props.id}
             dataname={props.cnsName}
             className={props.class}
-            fill={color}
+            fill={color!=null?color:"gray"}
             d={props.dd}
           />
         </g>
@@ -37,7 +37,7 @@ function Map(props) {
             key={props.id}
             id={props.id}
             className={props.class}
-            fill={color}
+            fill={color!=null?color:"gray"}
             points={props.points}
           />
         </g>

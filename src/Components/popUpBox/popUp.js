@@ -21,8 +21,12 @@ function PopUp({ data }) {
             {data.name}
           </h2>
           {/* <h4>{data.mla}</h4> */}
-          <h6 className="partyName">{data.party}</h6>
-          <img src={data.logo} alt="party logo" height="30px" />
+          {/* <h4 className="partyName">{data.party}</h4>
+          <img src={data.logo} alt="party logo" height="40px"  /> */}
+          <div style={{display:"flex",paddingRight:"10px"}} >
+          <img style={{paddingRight:"10px"}} src={data.logo} alt="party logo" height="40px"  />
+          <h4 className="partyName">{data.party_code}</h4>
+          </div>
         </span>
       </ReactTooltip>
     </div>

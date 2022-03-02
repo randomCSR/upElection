@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import "./ConstituencyListStyle.css";
 
 function ConstituencyList({ dropDownList, onYearChange, onSelectCalled, chosenYear}) {
-  const [items, setItems] = useState();
+  // const [items, setItems] = useState();
   // const [year, setYear] = useState("2017");
 
   const handleYearChange = (e) => {
@@ -52,7 +52,7 @@ function ConstituencyList({ dropDownList, onYearChange, onSelectCalled, chosenYe
         </div> */}
       </div>
 
-      <select
+      {/* <select
         id="constituency"
         value={items}
         onChange={(e) => {
@@ -73,7 +73,7 @@ function ConstituencyList({ dropDownList, onYearChange, onSelectCalled, chosenYe
             key={data.name}
           ></option>
         ))}
-      </select>
+      </select> */}
     </div>
   );
 }
