@@ -2,6 +2,7 @@
   width: 95vw;
   margin: auto;
 }
+
 body {
   background-color: #000000;
 }
@@ -91,48 +92,48 @@ button {
   stroke: #ffffff;
   stroke-width: 1;
 }
-.cns-1:hover {
+/* .cns-1:hover {
   fill: #ffffff;
-}
+} */
 
 .st0 {
-  fill-rule: evenodd;
-  clip-rule: evenodd;
+  /* fill-rule: evenodd; */
+  /* clip-rule: evenodd; */
   stroke: #ffffff;
-  stroke-width: 0.5;
+  stroke-width: 0.7;
   stroke-miterlimit: 10;
 }
 .st1 {
-  fill-rule: evenodd;
-  clip-rule: evenodd;
+  /* fill-rule: evenodd; */
+  /* clip-rule: evenodd; */
   stroke: #ffffff;
   stroke-width: 0.5;
   stroke-miterlimit: 10;
 }
 .st2 {
-  fill-rule: evenodd;
-  clip-rule: evenodd;
+  /* fill-rule: evenodd; */
+  /* clip-rule: evenodd; */
   stroke: #ffffff;
   stroke-width: 0.5;
   stroke-miterlimit: 10;
 }
 .st3 {
-  fill-rule: evenodd;
-  clip-rule: evenodd;
+  /* fill-rule: evenodd; */
+  /* clip-rule: evenodd; */
   stroke: #ffffff;
   stroke-width: 0.5;
   stroke-miterlimit: 10;
 }
 .st4 {
-  fill-rule: evenodd;
-  clip-rule: evenodd;
+  /* fill-rule: evenodd; */
+  /* clip-rule: evenodd; */
   stroke: #ffffff;
   stroke-width: 0.5;
   stroke-miterlimit: 10;
 }
 .st5 {
-  fill-rule: evenodd;
-  clip-rule: evenodd;
+  /* fill-rule: evenodd; */
+  /* clip-rule: evenodd; */
   stroke: #ffffff;
   stroke-width: 0.5;
   stroke-miterlimit: 10;

@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./InfoStyle.css";
-import { BarChart, Bar, XAxis, YAxis,CartesianGrid, Tooltip, Legend } from "recharts";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+} from "recharts";
 import chevronLeftIcon from "./Icons/chevron-left.svg";
 import {
   ArrMap,
@@ -144,7 +152,7 @@ function InfoPage({ cId, selectedYear, state_id, handleBackClick }) {
   ];
 
   const malePercent = 70;
-  const femalePercent =30;
+  const femalePercent = 30;
 
   const maleLoop = Math.ceil(malePercent / 10);
   const femaleLoop = Math.ceil(femalePercent / 10);
@@ -191,32 +199,32 @@ function InfoPage({ cId, selectedYear, state_id, handleBackClick }) {
               </svg>
             )}
           </div>
-          
-        <div className="graphContainer">
-          <div className="graph">
-                <BarChart
-                  width={200}
-                  height={270}
-                  data={barData}
-                  barCategoryGap={30}
-                  margin={{
-                    top: 20,
-                    // right: 30,
-                    // left: 20,
-                    // bottom: 5
-                  }}
-                >
-                  <CartesianGrid strokeDasharray="0 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="Winner" fill="#00FFFF" />
-                  <Bar dataKey="Runnerup" fill="#4a86e6" />
-                </BarChart>
+
+          <div className="graphContainer">
+            <div className="graph">
+              <BarChart
+                width={200}
+                height={270}
+                data={barData}
+                barCategoryGap={30}
+                margin={{
+                  top: 20,
+                  // right: 30,
+                  // left: 20,
+                  // bottom: 5
+                }}
+              >
+                <CartesianGrid strokeDasharray="0 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="Winner" fill="#00FFFF" />
+                <Bar dataKey="Runnerup" fill="#4a86e6" />
+              </BarChart>
+            </div>
           </div>
         </div>
-      </div>
         <div className="gridItem item2">
           <div className="item3">
             <h1 className="constName"> {data.name}</h1>{" "}

@@ -3,12 +3,12 @@
   color: white;
   font-weight: bold;
   margin-bottom: 0rem;
-  border-radius:5px;
-  padding :5px 10px;
-  margin-left:155px;
-  background-color:#292828;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-left: 155px;
+  background-color: #292828;
 }
-.targetComponent{
+.targetComponent {
   margin: 10px;
   text-align: center;
   color: white;
@@ -25,31 +25,29 @@
 }
 .table {
   width: 100%;
-
 }
 
 .tHeading {
   /* width: 100%; */
   text-align: start;
   font-size: 20px;
-  background-color: #0766FB;
+  background-color: #0766fb;
   color: white;
 }
 .table th {
   padding: 10px;
- 
 }
-.table-head{
-  border-radius:15px; 
+.table-head {
+  border-radius: 15px;
 }
 .tBody {
   font-size: 18px;
   background-color: #292828;
   color: white;
   font-weight: bold;
-  border: 1px solid  #848482;
+  border: 1px solid #848482;
 }
 .tBody td {
   padding: 6px;
-  text-align:start;
+  text-align: start;
 }

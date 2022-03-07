@@ -1,4 +1,5 @@
 import React from "react";
+import "./MapStyle.css";
 
 function Map(props) {
   // const id = props.id;
@@ -12,7 +13,7 @@ function Map(props) {
   return (
     <>
       {props.points === undefined ? (
-        <g data-tip data-for="singleBox" key={`poly${props.id}`}>
+        <g data-tip data-for="singleBox" key={`poly${props.id}`} className="noSelect">
           <path
             onMouseOver={getId}
             onClick={() => {
@@ -22,12 +23,13 @@ function Map(props) {
             id={props.id}
             dataname={props.cnsName}
             className={props.class}
-            fill={color!=null?color:"gray"}
+            // className={"noSelect"}
+            fill={color != null ? color : "gray"}
             d={props.dd}
           />
         </g>
       ) : (
-        <g data-tip data-for="singleBox" key={`poly${props.id}`}>
+        <g data-tip data-for="singleBox" key={`poly${props.id}`} className="noSelect">
           <polygon
             onMouseOver={getId}
             onClick={() => {
@@ -37,7 +39,8 @@ function Map(props) {
             key={props.id}
             id={props.id}
             className={props.class}
-            fill={color!=null?color:"gray"}
+            // className={"noSelect"}
+            fill={color != null ? color : "gray"}
             points={props.points}
           />
         </g>

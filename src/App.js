@@ -35,39 +35,59 @@ function App() {
   const query = new URLSearchParams(window.location.search);
   const isLive = query.get("isLive") || "false";
 
+  // useEffect(() => {
+  //   getElectionLeads("en");
+  // }, []);
+  const MINUTE_MS = 60000;
+
   useEffect(() => {
-  getElectionLeads("en");
-}, []);
+    getElectionLeads("en");
+    const interval = setInterval(() => {
+      getElectionLeads("en");
+      // console.log('Logs every minute');
+    }, MINUTE_MS);
 
-const getElectionLeads = async (lang = "en") => {
-  const body = new URLSearchParams();
-  body.append("lang", lang);
-  const headers = {
-    "Content-Type": "application/x-www-form-urlencoded",
-    Accept: "application/json",
+    return () => clearInterval(interval);
+  }, []);
+
+  const getElectionLeads = async (lang = "en") => {
+    const body = new URLSearchParams();
+    body.append("lang", lang);
+    const headers = {
+      "Content-Type": "application/x-www-form-urlencoded",
+      Accept: "application/json",
+    };
+
+    const url =
+      isLive === "true"
+        ? 
+        `https://node-api.editorji.com/elections/election-leads`
+        : `https://stage-api.editorji.com/elections/election-leads`;
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        body,
+        headers,
+      });
+      const { response } = await res.json();
+      setElectionLead(response);
+      return {};
+    } catch (error) {
+      return Promise.reject(error);
+    }
   };
+  console.log(electionLead);
 
-  const url = 
-  isLive === "true"
-  ? `https://node-api.editorji.com/elections/election-leads`
-  : `https://stage-api.editorji.com/elections/election-leads`;
-  try {
-    const res = await fetch(url, {
-      method: "POST",
-      body,
-      headers,
-    });
-    const { response } = await res.json();
-    setElectionLead(response);
-    return {};
-  } catch (error) {
-    return Promise.reject(error);
-  }
-};
-
-
+  // useEffect(() => {
+  //   getConstituencyData("en");
+  // }, [state, selectedYear]);
   useEffect(() => {
     getConstituencyData("en");
+    const interval = setInterval(() => {
+      getConstituencyData("en");
+    }, MINUTE_MS);
+
+    return () => clearInterval(interval);
   }, [state, selectedYear]);
 
   const getConstituencyData = async (lang = "en") => {
@@ -81,19 +101,16 @@ const getElectionLeads = async (lang = "en") => {
       Accept: "application/json",
     };
     const url =
-    isLive === "true"
-    ? `https://node-api.editorji.com/elections/constituencies`
-    : `https://stage-api.editorji.com/elections/constituencies`;
+      isLive === "true"
+        ? `https://node-api.editorji.com/elections/constituencies`
+        : `https://stage-api.editorji.com/elections/constituencies`;
 
     try {
-      const res = await fetch(
-        url,
-        {
-          method: "POST",
-          body,
-          headers,
-        }
-      );
+      const res = await fetch(url, {
+        method: "POST",
+        body,
+        headers,
+      });
       const { response, piechart, constituencyCount } = await res.json();
       console.log("MapData: ", response);
       setData(response);
@@ -104,8 +121,6 @@ const getElectionLeads = async (lang = "en") => {
       return Promise.reject(error);
     }
   };
-
-
 
   function createMap(cnsTerms) {
     return (
@@ -158,7 +173,6 @@ const getElectionLeads = async (lang = "en") => {
   //   // console.log("YearData", data);
   // };
 
-
   const handleStateClick = (state_id) => {
     // console.log("StateID: ", state_id);
     setState(state_id);
@@ -190,89 +204,88 @@ const getElectionLeads = async (lang = "en") => {
             handleBackClick={handleBackClick}
           />
         ) : ( */}
-          <>
-            <div className="stateBtnHeader">
-              <button
-                key="UTTAR PARDESH"
-                id="UTTAR PARDESH"
-                className={`btn ${state === upStateId ? "active" : ""}`}
-                onClick={() => handleStateClick(upStateId)}
-              >
-                UTTAR PRADESH
-              </button>
-              <button
-                key="PUNJAB"
-                id="PUNJAB"
-                className={`btn ${state === punjabStateId ? "active" : ""}`}
-                onClick={() => handleStateClick(punjabStateId)}
-              >
-                PUNJAB
-              </button>
-              <button
-                id="UTTRAKHAND"
-                key="UTTRAKHAND"
-                className={`btn ${state === uttrakhandStateId ? "active" : ""}`}
-                onClick={() => handleStateClick(uttrakhandStateId)}
-              >
-                UTTRAKHAND
-              </button>
-              <button
-                id="GOA"
-                key="GOA"
-                className={`btn ${state === goaStateId ? "active" : ""}`}
-                onClick={() => handleStateClick(goaStateId)}
-              >
-                GOA
-              </button>
-              <button
-                id="MANIPUR"
-                key="MANIPUR"
-                className={`btn ${state === manipurStateId ? "active" : ""}`}
-                onClick={() => handleStateClick(manipurStateId)}
-              >
-                MANIPUR
-              </button>
-            </div>
+        <>
+          <div className="stateBtnHeader">
+            <button
+              key="UTTAR PARDESH"
+              id="UTTAR PARDESH"
+              className={`btn ${state === upStateId ? "active" : ""}`}
+              onClick={() => handleStateClick(upStateId)}
+            >
+              UTTAR PRADESH
+            </button>
+            <button
+              key="PUNJAB"
+              id="PUNJAB"
+              className={`btn ${state === punjabStateId ? "active" : ""}`}
+              onClick={() => handleStateClick(punjabStateId)}
+            >
+              PUNJAB
+            </button>
+            <button
+              id="UTTRAKHAND"
+              key="UTTRAKHAND"
+              className={`btn ${state === uttrakhandStateId ? "active" : ""}`}
+              onClick={() => handleStateClick(uttrakhandStateId)}
+            >
+              UTTRAKHAND
+            </button>
+            <button
+              id="GOA"
+              key="GOA"
+              className={`btn ${state === goaStateId ? "active" : ""}`}
+              onClick={() => handleStateClick(goaStateId)}
+            >
+              GOA
+            </button>
+            <button
+              id="MANIPUR"
+              key="MANIPUR"
+              className={`btn ${state === manipurStateId ? "active" : ""}`}
+              onClick={() => handleStateClick(manipurStateId)}
+            >
+              MANIPUR
+            </button>
+          </div>
 
-            <div className="row2">
-              {state === punjabStateId &&
-                createMapSvg("0 0 600 600", ArrMap, punjabStateId)}
-              {state === upStateId &&
-                createMapSvg("80 140 950 950", UpArrMap, upStateId)}
-              {state === uttrakhandStateId &&
-                createMapSvg(
-                  "100 150 900 900",
-                  UttrakhandArrMap,
-                  uttrakhandStateId
-                )}
-              {state === goaStateId &&
-                createMapSvg("50 60 650 650", GoaArrMap, goaStateId)}
-              {state === manipurStateId &&
-                createMapSvg("100 140 800 800", ManipurArrMap, manipurStateId)}
-              <div className="firstWidget">
-                <div className="firstWidgetContainer">
-                  <ConstituencyList
-                    dropDownList={data}
-                    onYearChange={onYearChange}
-                    onSelectCalled={onSelectCalled}
-                    chosenYear = {selectedYear}
-
-                  />
-                  {
-                    <div className="secondWidget">
-                      <PieChartCompo
-                        year={selectedYear}
-                        stateNumber = {state}
-                        leadData = {electionLead}
-                        pieChartData={pieData}
-                        totalConstituency={constituencyRatio}
-                      />
-                    </div>
-                  }
-                </div>
+          <div className="row2">
+            {state === punjabStateId &&
+              createMapSvg("0 0 600 600", ArrMap, punjabStateId)}
+            {state === upStateId &&
+              createMapSvg("80 140 950 950", UpArrMap, upStateId)}
+            {state === uttrakhandStateId &&
+              createMapSvg(
+                "100 150 900 900",
+                UttrakhandArrMap,
+                uttrakhandStateId
+              )}
+            {state === goaStateId &&
+              createMapSvg("50 60 650 650", GoaArrMap, goaStateId)}
+            {state === manipurStateId &&
+              createMapSvg("100 140 800 800", ManipurArrMap, manipurStateId)}
+            <div className="firstWidget">
+              <div className="firstWidgetContainer">
+                <ConstituencyList
+                  dropDownList={data}
+                  onYearChange={onYearChange}
+                  onSelectCalled={onSelectCalled}
+                  chosenYear={selectedYear}
+                />
+                {
+                  <div className="secondWidget">
+                    <PieChartCompo
+                      year={selectedYear}
+                      stateNumber={state}
+                      leadData={electionLead}
+                      pieChartData={pieData}
+                      totalConstituency={constituencyRatio}
+                    />
+                  </div>
+                }
               </div>
             </div>
-          </>
+          </div>
+        </>
         {/* )} */}
       </div>
     </div>
