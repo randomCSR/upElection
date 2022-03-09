@@ -60,8 +60,7 @@ function App() {
 
     const url =
       isLive === "true"
-        ? 
-        `https://node-api.editorji.com/elections/election-leads`
+        ? `https://node-api.editorji.com/elections/election-leads`
         : `https://stage-api.editorji.com/elections/election-leads`;
     try {
       const res = await fetch(url, {
@@ -207,8 +206,8 @@ function App() {
         <>
           <div className="stateBtnHeader">
             <button
-              key="UTTAR PARDESH"
-              id="UTTAR PARDESH"
+              key="UTTAR PRADESH"
+              id="UTTAR PRADESH"
               className={`btn ${state === upStateId ? "active" : ""}`}
               onClick={() => handleStateClick(upStateId)}
             >
@@ -223,12 +222,12 @@ function App() {
               PUNJAB
             </button>
             <button
-              id="UTTRAKHAND"
-              key="UTTRAKHAND"
+              id="UTTARAKHAND"
+              key="UTTARAKHAND"
               className={`btn ${state === uttrakhandStateId ? "active" : ""}`}
               onClick={() => handleStateClick(uttrakhandStateId)}
             >
-              UTTRAKHAND
+              UTTARAKHAND
             </button>
             <button
               id="GOA"
