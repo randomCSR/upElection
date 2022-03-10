@@ -28,26 +28,22 @@ function App() {
   const [popUpData, setPopUpData] = useState();
   const [pieData, setPieData] = useState();
   const [constituencyRatio, setconstituencyRatio] = useState();
-  const [selectedYear, setSelectedYear] = useState("2017");
+  const [selectedYear, setSelectedYear] = useState("2022");
   const [id, setId] = useState();
   const [isShowInfo, setShowInfo] = useState(false);
   const [electionLead, setElectionLead] = useState([]);
   const query = new URLSearchParams(window.location.search);
   const isLive = query.get("isLive") || "false";
-
-  // useEffect(() => {
-  //   getElectionLeads("en");
-  // }, []);
   const MINUTE_MS = 60000;
 
   useEffect(() => {
     getElectionLeads("en");
-    const interval = setInterval(() => {
-      getElectionLeads("en");
-      // console.log('Logs every minute');
-    }, MINUTE_MS);
+    // const interval = setInterval(() => { for auto refresh
+    //   getElectionLeads("en");
+    //   // console.log('Logs every minute');
+    // }, MINUTE_MS);
 
-    return () => clearInterval(interval);
+    // return () => clearInterval(interval);
   }, []);
 
   const getElectionLeads = async (lang = "en") => {
@@ -75,18 +71,14 @@ function App() {
       return Promise.reject(error);
     }
   };
-  console.log(electionLead);
 
-  // useEffect(() => {
-  //   getConstituencyData("en");
-  // }, [state, selectedYear]);
   useEffect(() => {
     getConstituencyData("en");
-    const interval = setInterval(() => {
-      getConstituencyData("en");
-    }, MINUTE_MS);
+    // const interval = setInterval(() => { //for auto refresh
+    //   getConstituencyData("en");
+    // }, MINUTE_MS);
 
-    return () => clearInterval(interval);
+    // return () => clearInterval(interval);
   }, [state, selectedYear]);
 
   const getConstituencyData = async (lang = "en") => {
@@ -167,10 +159,6 @@ function App() {
     setSelectedYear(data);
     // console.log("YearData", data);
   };
-  // const passedYear = (year) => {
-  //   setSelectedYear(year);
-  //   // console.log("YearData", data);
-  // };
 
   const handleStateClick = (state_id) => {
     // console.log("StateID: ", state_id);
