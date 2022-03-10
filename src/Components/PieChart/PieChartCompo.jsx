@@ -102,7 +102,7 @@ export default function PieChartCompo({
               <thead className="tHeading">
                 <tr className="table-head">
                   <th>Party</th>
-                  <th>Result</th>
+                  <th>Seats</th>
                 </tr>
               </thead>
 
@@ -162,7 +162,7 @@ export default function PieChartCompo({
               <thead className="tHeading">
                 <tr className="table-head">
                   <th>Party</th>
-                  <th>Result</th>
+                  <th>Seats</th>
                 </tr>
               </thead>
 
